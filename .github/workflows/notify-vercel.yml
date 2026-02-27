@@ -1,0 +1,13 @@
+name: 'notify vercel'
+on:
+  push:
+    branches:
+      - main
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send workflow updates to Vercel
+        uses: vercel/repository-dispatch/actions/status@v1
+        with:
+          name: Vercel - tijara-web-iwcq: lint

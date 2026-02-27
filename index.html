@@ -1,142 +1,148 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tijara Web - منصة التجارة الذكية</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* Reset & Fonts */
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
-    html, body { height: 100%; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tijara Web</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
 
-    /* Background Trend 2026 */
-    body {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      color:#fff;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
+body{
+background:#0f172a;
+color:white;
+}
 
-    /* Floating background shapes */
-    .shape {
-      position:absolute;
-      border-radius:50%;
-      opacity:0.3;
-      animation: float 10s linear infinite;
-      z-index:0;
-    }
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:#0f172a;
+position:fixed;
+width:100%;
+top:0;
+}
 
-    .shape1 { width:300px; height:300px; background:#ff4b2b; top:-50px; left:-50px; animation-delay:0s; }
-    .shape2 { width:200px; height:200px; background:#ff416c; top:100px; right:-50px; animation-delay:2s; }
-    .shape3 { width:250px; height:250px; background:#ffd700; bottom:-50px; left:50px; animation-delay:4s; }
+.logo{
+font-size:1.5rem;
+font-weight:900;
+color:#38bdf8;
+}
 
-    @keyframes float {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-50px) rotate(180deg); }
-      100% { transform: translateY(0px) rotate(360deg); }
-    }
+nav a{
+color:white;
+margin-left:25px;
+text-decoration:none;
+transition:0.3s;
+}
 
-    /* Main Container */
-    .container {
-      position:relative;
-      z-index:1;
-      max-width:700px;
-      width:90%;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius:20px;
-      padding:50px 30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    }
+nav a:hover{
+color:#38bdf8;
+}
 
-    h1 {
-      font-size:2.8rem;
-      margin-bottom:1rem;
-      text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
-    }
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 20px;
+background:linear-gradient(to right,#0f172a,#1e293b);
+}
 
-    p {
-      font-size:1.3rem;
-      margin-bottom:2rem;
-      color:#eee;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-    }
+.hero h1{
+font-size:3rem;
+margin-bottom:20px;
+}
 
-    a.button {
-      display:inline-block;
-      padding:15px 40px;
-      background: linear-gradient(90deg, #ff416c, #ff4b2b);
-      font-weight:600;
-      font-size:1.2rem;
-      border-radius:50px;
-      color:#fff;
-      text-decoration:none;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    }
+.hero p{
+font-size:1.2rem;
+color:#cbd5e1;
+margin-bottom:40px;
+max-width:600px;
+}
 
-    a.button:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
-    }
+.btn{
+background:#38bdf8;
+color:#0f172a;
+padding:15px 40px;
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+transition:0.3s;
+}
 
-    /* Social Icons */
-    .social-icons {
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      margin-top:30px;
-      font-size:1.8rem;
-      animation: floatIcons 4s ease-in-out infinite alternate;
-    }
+.btn:hover{
+transform:scale(1.1);
+}
 
-    .social-icons a {
-      color:#fff;
-      transition: all 0.3s ease;
-    }
+.features{
+padding:100px 10%;
+background:#1e293b;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
 
-    .social-icons a:hover {
-      color:#ffd700;
-      transform: scale(1.3);
-    }
+.card{
+background:#0f172a;
+padding:30px;
+border-radius:15px;
+text-align:center;
+transition:0.3s;
+}
 
-    @keyframes floatIcons {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10px); }
-    }
+.card:hover{
+transform:translateY(-10px);
+}
 
-    @media(max-width:600px){
-      h1{ font-size:2rem; }
-      p{ font-size:1rem; }
-      a.button{ padding:12px 30px; font-size:1rem; }
-      .social-icons { font-size:1.5rem; gap:15px; }
-    }
-  </style>
+footer{
+padding:20px;
+text-align:center;
+background:#0f172a;
+color:#94a3b8;
+}
+</style>
 </head>
 <body>
-  <!-- Floating Shapes -->
-  <div class="shape shape1"></div>
-  <div class="shape shape2"></div>
-  <div class="shape shape3"></div>
 
-  <!-- Main Content -->
-  <div class="container">
-    <h1>مرحبا بك في Tijara Web</h1>
-    <p>تسوق منتجاتنا بثقة وسهولة، وتابعنا على جميع منصات التواصل</p>
-    <a class="button" href="#">ابدأ الآن 🚀</a>
-    <div class="social-icons">
-      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
-  </div>
+<header>
+<div class="logo">Tijara Web</div>
+<nav>
+<a href="#">الرئيسية</a>
+<a href="#">المنتجات</a>
+<a href="#">تسجيل الدخول</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>منصة التجارة الذكية في 2026 🚀</h1>
+<p>اجمع متجرك، منتجاتك، ومنصات التواصل في نظام واحد احترافي وسريع.</p>
+<a href="#" class="btn">ابدأ الآن</a>
+</section>
+
+<section class="features">
+<div class="card">
+<h3>⚡ سرعة فائقة</h3>
+<p>موقع سريع وخفيف على جميع الأجهزة.</p>
+</div>
+
+<div class="card">
+<h3>🔐 أمان عالي</h3>
+<p>نظام حماية حديث لحماية بياناتك.</p>
+</div>
+
+<div class="card">
+<h3>🌍 ربط اجتماعي</h3>
+<p>دمج كل منصات التواصل في مكان واحد.</p>
+</div>
+</section>
+
+<footer>
+© 2026 Tijara Web - All rights reserved
+</footer>
+
 </body>
 </html>

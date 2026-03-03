@@ -48,3 +48,150 @@ z-index:1000;
 .logo{
 font-weight:900;
 font-size:1.4rem;
+color:var(--primary);
+}
+
+nav a{
+color:white;
+margin-left:25px;
+text-decoration:none;
+transition:.3s;
+}
+
+nav a:hover{
+color:var(--primary);
+}
+
+/* Hero */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 20px;
+background:radial-gradient(circle at center,#111 0%,#000 70%);
+}
+
+.hero h1{
+font-size:3.5rem;
+margin-bottom:20px;
+opacity:0;
+transform:translateY(40px);
+animation:fadeUp 1.2s ease forwards;
+}
+
+.hero p{
+font-size:1.2rem;
+color:#aaa;
+margin-bottom:40px;
+opacity:0;
+transform:translateY(40px);
+animation:fadeUp 1.2s ease .2s forwards;
+}
+
+.btn{
+background:var(--primary);
+color:#000;
+padding:15px 45px;
+border-radius:40px;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+box-shadow:0 10px 30px rgba(59,130,246,.3);
+opacity:0;
+transform:translateY(40px);
+animation:fadeUp 1.2s ease .4s forwards;
+}
+
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 15px 40px rgba(59,130,246,.5);
+}
+
+/* Section */
+.section{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#111;
+padding:100px 10%;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+width:100%;
+}
+
+.card{
+background:var(--glass);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+transition:.4s;
+opacity:0;
+transform:translateY(60px);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+/* Animation */
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Tijara</div>
+<nav>
+<a href="#">الرئيسية</a>
+<a href="products.html">المنتجات</a>
+<a href="login.html">دخول</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>مستقبل التجارة يبدأ من هنا</h1>
+<p>منصة ذكية سريعة مصممة بمعايير الجيل الجديد</p>
+<a href="products.html" class="btn">ابدأ الآن</a>
+</section>
+
+<section class="section">
+<div class="grid">
+<div class="card">⚡ أداء فائق السرعة</div>
+<div class="card">🔐 أمان متقدم</div>
+<div class="card">🌍 تكامل شامل</div>
+</div>
+</section>
+
+<script>
+const cards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll",()=>{
+cards.forEach(card=>{
+const top = card.getBoundingClientRect().top;
+if(top < window.innerHeight - 100){
+card.classList.add("show");
+}
+});
+});
+</script>
+
+</body>
+</html>

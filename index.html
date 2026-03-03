@@ -3,149 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tijara Web</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
-
+<title>صفحة الخدمات المتقدمة</title>
 <style>
-:root{
---primary:#4f46e5;
---bg:#000;
-}
+/* --- Reset & Fonts --- */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background:#f5f5f5; color:#333; line-height:1.6; }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
+/* --- Header --- */
+header {
+  background:#111; color:#fff; padding:1rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
 }
+header h1 { font-size:1.8rem; }
+nav a { color:#fff; text-decoration:none; margin-left:1.5rem; transition:0.3s; }
+nav a:hover { color:#ff3f3f; }
 
-body{
-background:#000;
-color:white;
-overflow:hidden;
+/* --- Hero Section --- */
+.hero {
+  background: url('https://images.unsplash.com/photo-1601597117107-d4a74c14816b?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+  height:400px; display:flex; justify-content:center; align-items:center;
+  color:#fff; text-align:center; position:relative;
 }
+.hero::after {
+  content:''; position:absolute; inset:0; background:rgba(0,0,0,0.4);
+}
+.hero-content { position:relative; z-index:1; }
+.hero h2 { font-size:2.5rem; margin-bottom:1rem; }
+.hero button {
+  padding:0.8rem 2rem; font-size:1rem; border:none;
+  background:#ff3f3f; color:#fff; cursor:pointer; transition:0.3s;
+}
+.hero button:hover { background:#e63946; }
 
-/* ===== INTRO SCREEN ===== */
-.intro{
-position:fixed;
-inset:0;
-background:#000;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:9999;
+/* --- Filter Section --- */
+.filter {
+  max-width:1200px; margin:2rem auto; padding:0 1rem; text-align:center;
 }
+.filter button {
+  padding:0.5rem 1rem; margin:0.3rem; border:none; background:#111; color:#fff;
+  cursor:pointer; transition:0.3s; border-radius:5px;
+}
+.filter button:hover { background:#ff3f3f; }
 
-.intro h1{
-font-size:2rem;
-letter-spacing:6px;
-opacity:0;
-animation:logoReveal 1.5s ease forwards;
+/* --- Products Section --- */
+.products { max-width:1200px; margin:2rem auto; padding:0 1rem; }
+.products h3 { margin-bottom:1.5rem; font-size:2rem; text-align:center; }
+.grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1.5rem;
 }
+.card {
+  background:#fff; border-radius:10px; overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:0.3s;
+  display:flex; flex-direction:column;
+}
+.card img { width:100%; height:200px; object-fit:cover; }
+.card-content { padding:1rem; flex:1; display:flex; flex-direction:column; }
+.card-content h4 { margin-bottom:0.5rem; font-size:1.2rem; }
+.card-content p { flex:1; font-size:0.95rem; margin-bottom:1rem; }
+.card-content button {
+  padding:0.5rem; border:none; background:#111; color:#fff; cursor:pointer; transition:0.3s;
+}
+.card-content button:hover { background:#ff3f3f; }
+.card:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
 
-@keyframes logoReveal{
-0%{opacity:0;transform:scale(0.8);}
-100%{opacity:1;transform:scale(1);}
+/* --- Carousel --- */
+.carousel {
+  max-width:1200px; margin:2rem auto; overflow:hidden; position:relative;
 }
+.carousel-track {
+  display:flex; transition:transform 0.5s ease-in-out;
+}
+.carousel-item {
+  min-width:250px; margin-right:1rem;
+}
+.carousel-item img { width:100%; border-radius:10px; }
 
-/* ===== HERO ===== */
-.hero{
-position:absolute;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-background:url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d") center/cover no-repeat;
-transform:scale(1.2);
-opacity:0;
-transition:1.5s ease;
+/* --- Carousel Buttons --- */
+.carousel button {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(0,0,0,0.5); border:none; color:#fff; padding:0.5rem 1rem; cursor:pointer;
 }
+#prev { left:10px; }
+#next { right:10px; }
 
-.hero::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0,0,0,0.9));
+/* --- Footer --- */
+footer {
+  background:#111; color:#fff; padding:2rem; text-align:center;
 }
-
-.hero-content{
-position:relative;
-z-index:2;
-max-width:700px;
-}
-
-.hero h1{
-font-size:3.8rem;
-margin-bottom:20px;
-opacity:0;
-transform:translateY(40px);
-transition:1s ease;
-}
-
-.hero p{
-color:#bbb;
-font-size:1.2rem;
-margin-bottom:40px;
-opacity:0;
-transform:translateY(40px);
-transition:1s ease .2s;
-}
-
-.btn{
-display:inline-block;
-padding:15px 50px;
-background:var(--primary);
-color:white;
-text-decoration:none;
-border-radius:50px;
-font-weight:bold;
-box-shadow:0 10px 40px rgba(79,70,229,.5);
-transition:.4s;
-opacity:0;
-transform:translateY(40px);
-}
-
-.btn:hover{
-transform:scale(1.1);
-}
-
-/* ACTIVE STATE */
-.hero.active{
-opacity:1;
-transform:scale(1);
-}
-
-.hero.active h1,
-.hero.active p,
-.hero.active .btn{
-opacity:1;
-transform:translateY(0);
-}
+footer a { color:#ff3f3f; text-decoration:none; margin:0 0.5rem; }
 </style>
 </head>
-
 <body>
 
-<div class="intro">
-<h1>T I J A R A</h1>
-</div>
+<header>
+  <h1>مشروعي</h1>
+  <nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">الخدمات</a>
+    <a href="#">حول</a>
+    <a href="#">تواصل</a>
+  </nav>
+</header>
 
 <section class="hero">
-<div class="hero-content">
-<h1>منصة توحد تجارتك الرقمية</h1>
-<p>كل مواقع التواصل والتجارة في تجربة واحدة ذكية وسريعة</p>
-<a href="products.html" class="btn">ابدأ الآن</a>
-</div>
+  <div class="hero-content">
+    <h2>أفضل الخدمات لك</h2>
+    <button>تصفح الآن</button>
+  </div>
 </section>
 
+<!-- Filter -->
+<div class="filter">
+  <button onclick="filterProducts('all')">الكل</button>
+  <button onclick="filterProducts('web')">ويب</button>
+  <button onclick="filterProducts('design')">تصميم</button>
+  <button onclick="filterProducts('marketing')">تسويق</button>
+</div>
+
+<!-- Carousel -->
+<div class="carousel">
+  <div class="carousel-track">
+    <div class="carousel-item"><img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt=""></div>
+    <div class="carousel-item"><img src="https://images.unsplash.com/photo-1591696205602-9e142c4b2a84?auto=format&fit=crop&w=800&q=80" alt=""></div>
+    <div class="carousel-item"><img src="https://images.unsplash.com/photo-1600180758895-fd2a38cb2f6c?auto=format&fit=crop&w=800&q=80" alt=""></div>
+    <div class="carousel-item"><img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt=""></div>
+  </div>
+  <button id="prev">&#10094;</button>
+  <button id="next">&#10095;</button>
+</div>
+
+<!-- Products Grid -->
+<section class="products">
+  <h3>خدماتنا المميزة</h3>
+  <div class="grid" id="productGrid">
+    <div class="card" data-category="web">
+      <img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt="خدمة ويب">
+      <div class="card-content">
+        <h4>خدمة ويب 1</h4>
+        <p>تصميم وبرمجة مواقع حديثة وعالمية.</p>
+        <button>اشترك الآن</button>
+      </div>
+    </div>
+    <div class="card" data-category="design">
+      <img src="https://images.unsplash.com/photo-1591696205602-9e142c4b2a84?auto=format&fit=crop&w=800&q=80" alt="تصميم">
+      <div class="card-content">
+        <h4>خدمة تصميم 1</h4>
+        <p>تصاميم جذابة تتوافق مع أفضل المعايير العالمية.</p>
+        <button>اشترك الآن</button>
+      </div>
+    </div>
+    <div class="card" data-category="marketing">
+      <img src="https://images.unsplash.com/photo-1600180758895-fd2a38cb2f6c?auto=format&fit=crop&w=800&q=80" alt="تسويق">
+      <div class="card-content">
+        <h4>خدمة تسويق 1</h4>
+        <p>استراتيجيات تسويقية مبتكرة لزيادة المبيعات.</p>
+        <button>اشترك الآن</button>
+      </div>
+    </div>
+    <div class="card" data-category="web">
+      <img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt="خدمة ويب">
+      <div class="card-content">
+        <h4>خدمة ويب 2</h4>
+        <p>تطوير مواقع وتجارب مستخدم متقدمة.</p>
+        <button>اشترك الآن</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  حقوق النشر &copy; 2026 | <a href="#">الرئيسية</a> | <a href="#">الخدمات</a> | <a href="#">تواصل</a>
+</footer>
+
 <script>
-setTimeout(()=>{
-document.querySelector(".intro").style.display="none";
-document.querySelector(".hero").classList.add("active");
-document.body.style.overflow="auto";
-},2000);
+/* --- Filter --- */
+function filterProducts(category){
+  const cards = document.querySelectorAll('#productGrid .card');
+  cards.forEach(card=>{
+    if(category==='all' || card.dataset.category===category){
+      card.style.display='flex';
+    } else {
+      card.style.display='none';
+    }
+  });
+}
+
+/* --- Carousel --- */
+const track = document.querySelector('.carousel-track');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+let index = 0;
+
+function updateCarousel(){
+  const itemWidth = track.querySelector('.carousel-item').offsetWidth + 16; // margin
+  track.style.transform = `translateX(-${index * itemWidth}px)`;
+}
+
+prev.addEventListener('click', ()=>{
+  index = Math.max(index-1,0);
+  updateCarousel();
+});
+next.addEventListener('click', ()=>{
+  const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / (track.children[0].offsetWidth +16));
+  index = Math.min(index+1, maxIndex);
+  updateCarousel();
+});
+
+window.addEventListener('resize', updateCarousel);
 </script>
 
 </body>

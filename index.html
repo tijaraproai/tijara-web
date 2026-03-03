@@ -5,162 +5,177 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مشروعي الفاخر - خدمات رقمية عالمية</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
-body { background:#f5f5f5; color:#333; line-height:1.6; scroll-behavior: smooth; }
-header { background:#111; color:#fff; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center;}
-header h1 { font-size:1.8rem; }
-nav a { color:#fff; text-decoration:none; margin-left:1.5rem; position:relative;}
-nav a::after { content:''; position:absolute; width:0; height:2px; background:#ff3f3f; left:0; bottom:-3px; transition:0.3s; }
-nav a:hover::after { width:100%; }
-.hero { background:url('https://images.unsplash.com/photo-1581092580494-5d7aeb74f2e7?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat; height:400px; display:flex; justify-content:center; align-items:center; color:#fff; text-align:center; position:relative; }
-.hero::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.45); }
-.hero-content { position:relative; z-index:1;}
-.hero h2 { font-size:2.5rem; margin-bottom:1rem; text-shadow:0 2px 10px rgba(0,0,0,0.6);}
-.hero button { padding:0.8rem 2rem; font-size:1rem; border:none; background:#ff3f3f; color:#fff; cursor:pointer; border-radius:5px; }
-.hero button:hover { background:#e63946; transform:scale(1.05); }
-.filter { max-width:1200px; margin:2rem auto; padding:0 1rem; text-align:center; }
-.filter button { padding:0.5rem 1rem; margin:0.3rem; border:none; background:#111; color:#fff; cursor:pointer; border-radius:5px; }
-.filter button:hover { background:#ff3f3f; transform:scale(1.05); }
-.search-box { max-width:1200px; margin:1rem auto; text-align:center; }
-.search-box input { padding:0.5rem; width:50%; border:1px solid #ccc; border-radius:5px; font-size:1rem; }
-.products { max-width:1200px; margin:2rem auto; padding:0 1rem; }
-.products h3 { margin-bottom:1.5rem; font-size:2rem; text-align:center;}
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; }
-.card { background:#fff; border-radius:15px; overflow:hidden; display:flex; flex-direction:column; }
-.card img { width:100%; height:200px; object-fit:cover; }
-.card-content { padding:1rem; flex:1; display:flex; flex-direction:column; }
-.card-content h4 { margin-bottom:0.5rem; font-size:1.2rem; }
-.card-content p { flex:1; font-size:0.95rem; margin-bottom:1rem; }
-.card-content button { padding:0.5rem; border:none; background:#111; color:#fff; cursor:pointer; border-radius:5px; }
-.card-content button:hover { background:#ff3f3f; transform:scale(1.05); }
-.pagination { max-width:1200px; margin:2rem auto; text-align:center; }
-.pagination button { padding:0.5rem 1rem; margin:0.3rem; border:none; background:#111; color:#fff; cursor:pointer; border-radius:5px;}
-.pagination button:hover, .pagination button.active { background:#ff3f3f; transform:scale(1.05); }
-footer { background:#111; color:#fff; padding:2rem; text-align:center;}
-footer a { color:#ff3f3f; text-decoration:none; margin:0 0.5rem;}
-footer a:hover { text-shadow:0 0 5px rgba(255,63,63,0.7);}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;scroll-behavior:smooth;}
+body{background:#f5f5f5;color:#333;line-height:1.6;}
+header{background:#111;color:#fff;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
+header h1{font-size:1.8rem;}
+nav a{color:#fff;text-decoration:none;margin-left:1.5rem;position:relative;font-weight:500;}
+nav a::after{content:'';position:absolute;width:0;height:2px;background:#ff3f3f;left:0;bottom:-3px;transition:0.3s;}
+nav a:hover::after{width:100%;}
+.hero{background:url('https://images.unsplash.com/photo-1581092580494-5d7aeb74f2e7?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;height:450px;display:flex;justify-content:center;align-items:center;color:#fff;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.45);}
+.hero-content{position:relative;z-index:1;}
+.hero h2{font-size:2.5rem;margin-bottom:1rem;text-shadow:0 2px 10px rgba(0,0,0,0.6);}
+.hero button{padding:0.8rem 2rem;font-size:1rem;border:none;background:#ff3f3f;color:#fff;cursor:pointer;border-radius:5px;box-shadow:0 4px 10px rgba(255,63,63,0.4);}
+.hero button:hover{background:#e63946;transform:scale(1.05);transition:0.3s;}
+.filter{max-width:1200px;margin:2rem auto;padding:0 1rem;text-align:center;}
+.filter button{padding:0.5rem 1rem;margin:0.3rem;border:none;background:#111;color:#fff;cursor:pointer;border-radius:5px;transition:0.3s;box-shadow:0 2px 5px rgba(0,0,0,0.3);}
+.filter button:hover{background:#ff3f3f;transform:scale(1.05);}
+.search-box{max-width:1200px;margin:1rem auto;text-align:center;}
+.search-box input{padding:0.5rem;width:50%;border:1px solid #ccc;border-radius:5px;font-size:1rem;box-shadow:0 2px 5px rgba(0,0,0,0.2);}
+.search-box input:focus{outline:none;border-color:#ff3f3f;box-shadow:0 0 10px rgba(255,63,63,0.5);}
+.products{max-width:1200px;margin:2rem auto;padding:0 1rem;}
+.products h3{margin-bottom:1.5rem;font-size:2rem;text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.card{background:#fff;border-radius:15px;overflow:hidden;display:flex;flex-direction:column;transition:all 0.4s ease;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+.card img{width:100%;height:200px;object-fit:cover;transition: transform 0.5s ease, filter 0.5s ease;}
+.card:hover img{transform:scale(1.05);filter:brightness(1.15);}
+.card-content{padding:1rem;flex:1;display:flex;flex-direction:column;transition: all 0.3s ease;}
+.card-content h4{margin-bottom:0.5rem;font-size:1.2rem;color:#111;}
+.card-content p{flex:1;font-size:0.95rem;margin-bottom:1rem;color:#555;}
+.card-content button{padding:0.5rem;border:none;background:#111;color:#fff;cursor:pointer;border-radius:5px;box-shadow:0 3px 10px rgba(0,0,0,0.2);}
+.card-content button:hover{background:#ff3f3f;transform:scale(1.05);}
+.pagination{max-width:1200px;margin:2rem auto;text-align:center;}
+.pagination button{padding:0.5rem 1rem;margin:0.3rem;border:none;background:#111;color:#fff;cursor:pointer;border-radius:5px;}
+.pagination button:hover, .pagination button.active{background:#ff3f3f;transform:scale(1.05);}
+footer{background:#111;color:#fff;padding:2rem;text-align:center;}
+footer a{color:#ff3f3f;text-decoration:none;margin:0 0.5rem;}
+footer a:hover{text-shadow:0 0 5px rgba(255,63,63,0.7);}
+/* Carousel */
+.carousel{max-width:1200px;margin:2rem auto;overflow:hidden;position:relative;border-radius:15px;}
+.carousel-track{display:flex;transition:transform 0.6s ease-in-out;}
+.carousel-item{min-width:300px;margin-right:1rem;border-radius:15px;overflow:hidden;transition: transform 0.5s ease;}
+.carousel-item img{width:100%;height:180px;object-fit:cover;border-radius:15px;transition: transform 0.5s ease;}
+.carousel-item:hover{transform:scale(1.05);}
+.carousel button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#fff;padding:0.5rem 1rem;cursor:pointer;border-radius:50%;box-shadow:0 4px 10px rgba(0,0,0,0.4);}
+#prev{left:10px;}#next{right:10px;}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>مشروعي الفاخر</h1>
-  <nav>
-    <a href="#hero">الرئيسية</a>
-    <a href="#services">الخدمات</a>
-    <a href="#about">حول</a>
-    <a href="#contact">تواصل</a>
-  </nav>
+<h1>مشروعي الفاخر</h1>
+<nav>
+<a href="#hero">الرئيسية</a>
+<a href="#services">الخدمات</a>
+<a href="#about">حول</a>
+<a href="#contact">تواصل</a>
+</nav>
 </header>
 
 <section class="hero" id="hero">
-  <div class="hero-content">
-    <h2>خدمات رقمية متكاملة وعالمية</h2>
-    <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'});">تصفح الخدمات</button>
-  </div>
+<div class="hero-content">
+<h2>خدمات رقمية متكاملة وعالمية</h2>
+<button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'});">تصفح الخدمات</button>
+</div>
 </section>
 
-<div class="filter">
-  <button onclick="filterProducts('all')">الكل</button>
-  <button onclick="filterProducts('web')">ويب</button>
-  <button onclick="filterProducts('design')">تصميم</button>
-  <button onclick="filterProducts('marketing')">تسويق</button>
+<div class="carousel">
+<div class="carousel-track" id="carouselTrack">
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt=""></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=800&q=80" alt=""></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt=""></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt=""></div>
+</div>
+<button id="prev">&#10094;</button>
+<button id="next">&#10095;</button>
 </div>
 
+<div class="filter">
+<button onclick="filterProducts('all')">الكل</button>
+<button onclick="filterProducts('web')">ويب</button>
+<button onclick="filterProducts('design')">تصميم</button>
+<button onclick="filterProducts('marketing')">تسويق</button>
+</div>
 <div class="search-box">
-  <input type="text" id="searchInput" placeholder="ابحث عن خدمة...">
+<input type="text" id="searchInput" placeholder="ابحث عن خدمة...">
 </div>
 
 <section class="products" id="services">
-  <h3>خدماتنا المميزة</h3>
-  <div class="grid" id="productGrid">
-    <!-- 12 بطاقة جاهزة -->
-    <div class="card" data-category="web">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="تطوير ويب">
-      <div class="card-content"><h4>تطوير مواقع حديثة</h4><p>تصميم وبرمجة مواقع متوافقة مع أفضل المعايير العالمية وتجربة مستخدم سلسة.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="web">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=800&q=80" alt="تحسين أداء المواقع">
-      <div class="card-content"><h4>تحسين أداء المواقع</h4><p>زيادة سرعة الموقع وتقليل وقت التحميل لأفضل تجربة مستخدم.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="design">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="تصميم UX/UI">
-      <div class="card-content"><h4>تصميم UX/UI</h4><p>واجهات مستخدم جذابة وسهلة الاستخدام لتجربة أفضل.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="design">
-      <img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt="تصميم شعارات">
-      <div class="card-content"><h4>تصميم شعارات وهوية بصرية</h4><p>خلق هوية قوية وجذابة لشركتك أو مشروعك الرقمي.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="marketing">
-      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt="SEO">
-      <div class="card-content"><h4>تحسين محركات البحث SEO</h4><p>زيادة ظهور موقعك على محركات البحث وجذب المزيد من الزوار المستهدفين.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="marketing">
-      <img src="https://images.unsplash.com/photo-1600180758895-fd2a38cb2f6c?auto=format&fit=crop&w=800&q=80" alt="حملات إعلانية">
-      <div class="card-content"><h4>إدارة الحملات الإعلانية</h4><p>إنشاء حملات إعلانية فعالة للوصول إلى الجمهور المناسب وزيادة المبيعات.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="web">
-      <img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt="برمجة واجهات">
-      <div class="card-content"><h4>برمجة واجهات حديثة</h4><p>تصميم واجهات تفاعلية وجذابة لتطبيقات الويب الحديثة.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="web">
-      <img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt="صيانة مواقع">
-      <div class="card-content"><h4>صيانة وتحديث المواقع</h4><p>حماية وتحديث المواقع لضمان استمرار الأداء المثالي.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="design">
-      <img src="https://images.unsplash.com/photo-1591696205602-9e142c4b2a84?auto=format&fit=crop&w=800&q=80" alt="تصميم واجهات تطبيقات">
-      <div class="card-content"><h4>تصميم واجهات تطبيقات</h4><p>تصميم واجهات تطبيقات الهواتف والأجهزة اللوحية بطريقة احترافية.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="design">
-      <img src="https://images.unsplash.com/photo-1591696205602-9e142c4b2a84?auto=format&fit=crop&w=800&q=80" alt="تصميم مواد تسويقية">
-      <div class="card-content"><h4>تصميم مواد تسويقية</h4><p>إنشاء مواد إعلانية احترافية للويب والطباعة لتعزيز علامتك التجارية.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="marketing">
-      <img src="https://images.unsplash.com/photo-1600180758895-fd2a38cb2f6c?auto=format&fit=crop&w=800&q=80" alt="محتوى تسويقي">
-      <div class="card-content"><h4>إنشاء محتوى تسويقي</h4><p>كتابة وتصميم محتوى يجذب العملاء ويزيد التفاعل على منصاتك الرقمية.</p><button>اشترك الآن</button></div>
-    </div>
-    <div class="card" data-category="marketing">
-      <img src="https://images.unsplash.com/photo-1600180758895-fd2a38cb2f6c?auto=format&fit=crop&w=800&q=80" alt="إدارة سوشيال ميديا">
-      <div class="card-content"><h4>إدارة منصات التواصل الاجتماعي</h4><p>إدارة حساباتك على السوشيال ميديا ونشر محتوى جذاب لتعزيز علامتك التجارية.</p><button>اشترك الآن</button></div>
-    </div>
-  </div>
+<h3>خدماتنا المميزة</h3>
+<div class="grid" id="productGrid">
+<!-- 12 بطاقة جاهزة -->
+<!-- بطاقة 1 -->
+<div class="card" data-category="web"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>تطوير مواقع حديثة</h4><p>تصميم وبرمجة مواقع متوافقة مع أفضل المعايير العالمية وتجربة مستخدم سلسة.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 2 -->
+<div class="card" data-category="web"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=800&q=80" alt=""><div class="card-content"><h4>تحسين أداء المواقع</h4><p>زيادة سرعة الموقع وتقليل وقت التحميل لأفضل تجربة مستخدم.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 3 -->
+<div class="card" data-category="design"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>تصميم UX/UI</h4><p>واجهات مستخدم جذابة وسهلة الاستخدام لتجربة أفضل.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 4 -->
+<div class="card" data-category="design"><img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>تصميم شعارات وهوية بصرية</h4><p>خلق هوية قوية وجذابة لشركتك أو مشروعك الرقمي.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 5 -->
+<div class="card" data-category="marketing"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>تحسين محركات البحث SEO</h4><p>زيادة ظهور موقعك على محركات البحث وجذب المزيد من الزوار المستهدفين.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 6 -->
+<div class="card" data-category="marketing"><img src="https://images.unsplash.com/photo-1600180758895-fd2a38cb2f6c?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>إدارة الحملات الإعلانية</h4><p>إنشاء حملات إعلانية فعالة للوصول إلى الجمهور المناسب وزيادة المبيعات.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 7 -->
+<div class="card" data-category="web"><img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>برمجة واجهات حديثة</h4><p>تصميم واجهات تفاعلية وجذابة لتطبيقات الويب الحديثة.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 8 -->
+<div class="card" data-category="web"><img src="https://images.unsplash.com/photo-1581091870620-211d8c9758aa?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>صيانة وتحديث المواقع</h4><p>حماية وتحديث المواقع لضمان استمرار الأداء المثالي.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 9 -->
+<div class="card" data-category="design"><img src="https://images.unsplash.com/photo-1591696205602-9e142c4b2a84?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>تصميم واجهات تطبيقات</h4><p>تصميم واجهات تطبيقات الهواتف والأجهزة اللوحية بطريقة احترافية.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 10 -->
+<div class="card" data-category="design"><img src="https://images.unsplash.com/photo-1591696205602-9e142c4b2a84?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>تصميم مواد تسويقية</h4><p>إنشاء مواد إعلانية احترافية للويب والطباعة لتعزيز علامتك التجارية.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 11 -->
+<div class="card" data-category="marketing"><img src="https://images.unsplash.com/photo-1600180758895-fd2a38cb2f6c?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>إنشاء محتوى تسويقي</h4><p>كتابة وتصميم محتوى يجذب العملاء ويزيد التفاعل على منصاتك الرقمية.</p><button>اشترك الآن</button></div></div>
+<!-- بطاقة 12 -->
+<div class="card" data-category="marketing"><img src="https://images.unsplash.com/photo-1600180758895-fd2a38cb2f6c?auto=format&fit=crop&w=800&q=80" alt=""><div class="card-content"><h4>إدارة منصات التواصل الاجتماعي</h4><p>إدارة حساباتك على السوشيال ميديا ونشر محتوى جذاب لتعزيز علامتك التجارية.</p><button>اشترك الآن</button></div></div>
+
+</div>
 </section>
 
 <section id="about" style="padding:2rem; max-width:1000px; margin:0 auto; text-align:center;">
-  <h2>حول المشروع</h2>
-  <p>مشروعي الفاخر هو منصة رقمية متكاملة تقدم خدمات تصميم، تطوير وتسويق للويب، التطبيقات، والشركات الناشئة. نهدف لتوفير حلول مبتكرة وعالمية ترفع من مستوى الأعمال الرقمية وتحسن تجربة المستخدم بشكل احترافي.</p>
+<h2>حول المشروع</h2>
+<p>مشروعي الفاخر هو منصة رقمية متكاملة تقدم خدمات تصميم، تطوير وتسويق للويب، التطبيقات، والشركات الناشئة. نهدف لتوفير حلول مبتكرة وعالمية ترفع من مستوى الأعمال الرقمية وتحسن تجربة المستخدم بشكل احترافي.</p>
 </section>
 
 <section id="contact" style="padding:2rem; max-width:800px; margin:0 auto; text-align:center;">
-  <h2>تواصل معنا</h2>
-  <p>للاستفسارات أو التعاون، يمكنك مراسلتنا عبر البريد الإلكتروني: <strong>contact@myproject.com</strong> أو الاتصال على الرقم: <strong>+216 99 999 999</strong></p>
+<h2>تواصل معنا</h2>
+<p>للاستفسارات أو التعاون، يمكنك مراسلتنا عبر البريد الإلكتروني: <strong>contact@myproject.com</strong> أو الاتصال على الرقم: <strong>+216 99 999 999</strong></p>
 </section>
 
 <div class="pagination" id="pagination"></div>
 
 <footer>
-  حقوق النشر &copy; 2026 | 
-  <a href="#hero">الرئيسية</a> | 
-  <a href="#services">الخدمات</a> | 
-  <a href="#contact">تواصل</a>
+حقوق النشر &copy; 2026 | 
+<a href="#hero">الرئيسية</a> | 
+<a href="#services">الخدمات</a> | 
+<a href="#contact">تواصل</a>
 </footer>
 
 <script>
-// Filtering and search
-const cards = document.querySelectorAll('#productGrid .card');
-function filterProducts(category){
-  cards.forEach(card=>{
-    card.style.display = (category==='all' || card.dataset.category===category) ? 'flex' : 'none';
-  });
-  paginate(1);
+// Carousel
+const track = document.getElementById('carouselTrack');
+let idx = 0;
+function moveCarousel(){ 
+  const width = track.children[0].offsetWidth + 16; 
+  idx++; 
+  if(idx >= track.children.length) idx = 0; 
+  track.style.transform=`translateX(-${idx*width}px)`; 
+}
+setInterval(moveCarousel,3000);
+document.getElementById('prev').onclick = ()=>{
+  const width = track.children[0].offsetWidth + 16;
+  idx = Math.max(idx-1,0);
+  track.style.transform=`translateX(-${idx*width}px)`;
+}
+document.getElementById('next').onclick = ()=>{
+  const width = track.children[0].offsetWidth + 16;
+  idx = Math.min(idx+1, track.children.length-1);
+  track.style.transform=`translateX(-${idx*width}px)`;
 }
 
+// Filter & Search
+const allCards = document.querySelectorAll('#productGrid .card');
+function filterProducts(category){
+  allCards.forEach(card=>{card.style.display=(category==='all'||card.dataset.category===category)?'flex':'none';});
+  paginate(1);
+}
 document.getElementById('searchInput').addEventListener('input', e=>{
   const query = e.target.value.toLowerCase();
-  cards.forEach(card=>{
+  allCards.forEach(card=>{
     const title = card.querySelector('h4').textContent.toLowerCase();
     const desc = card.querySelector('p').textContent.toLowerCase();
-    card.style.display = (title.includes(query) || desc.includes(query)) ? 'flex' : 'none';
+    card.style.display = (title.includes(query)||desc.includes(query))?'flex':'none';
   });
   paginate(1);
 });
@@ -168,20 +183,20 @@ document.getElementById('searchInput').addEventListener('input', e=>{
 // Pagination
 const itemsPerPage = 4;
 function paginate(page){
-  const visible = Array.from(cards).filter(c=>c.style.display!=='none');
+  const visible = Array.from(allCards).filter(c=>c.style.display!=='none');
   const totalPages = Math.ceil(visible.length/itemsPerPage);
-  visible.forEach((c,i)=> c.style.display = (i>=(page-1)*itemsPerPage && i<page*itemsPerPage)?'flex':'none');
+  visible.forEach((c,i)=>c.style.display=(i>=(page-1)*itemsPerPage && i<page*itemsPerPage)?'flex':'none');
   const pagination = document.getElementById('pagination');
-  pagination.innerHTML = '';
+  pagination.innerHTML='';
   for(let i=1;i<=totalPages;i++){
-    const btn = document.createElement('button');
-    btn.textContent=i;
+    const btn=document.createElement('button'); btn.textContent=i;
     if(i===page) btn.classList.add('active');
-    btn.onclick = ()=>paginate(i);
+    btn.onclick=()=>paginate(i);
     pagination.appendChild(btn);
   }
 }
 paginate(1);
 </script>
+
 </body>
 </html>

@@ -3,166 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منتجاتنا | Tijara</title>
+<title>مشروعي الفاخر - Production</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+body{background:#0f172a;color:white;overflow-x:hidden;}
 
-body{
-background:#0f172a;
-color:white;
-padding:40px;
+/* ===== HERO / INTRO ===== */
+.intro-screen{
+position:fixed;inset:0;background:#000;z-index:1000;display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;font-weight:bold;
 }
-
-h1{
-text-align:center;
-margin-bottom:40px;
-font-size:2.5rem;
+.hero{
+position:relative;height:80vh;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:50px;
 }
+.hero-img{
+position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;
+transform:scale(1.4);filter:blur(20px);opacity:0;transition:2s cubic-bezier(.19,1,.22,1);
+}
+.overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.9));}
+.content{
+position:relative;text-align:center;z-index:2;transform:translateY(40px);opacity:0;transition:1.2s ease 1.5s;
+}
+.content h1{font-size:3rem;margin-bottom:15px;}
+.content p{color:#ccc;margin-bottom:30px;font-size:1.2rem;}
+.btn{padding:12px 40px;background:white;color:black;border-radius:50px;text-decoration:none;font-weight:bold;transition:.3s;}
+.btn:hover{transform:scale(1.1);}
 
-.products-grid{
+/* ===== PRODUCTS GRID ===== */
+.products-section{padding:30px 20px;max-width:1200px;margin:auto;}
+.grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-max-width:1200px;
-margin:auto;
+gap:20px;
 }
-
 .product{
-background:#1e293b;
-border-radius:20px;
-overflow:hidden;
-transition:.3s;
-box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-
-.product:hover{
-transform:translateY(-8px);
-}
-
-.product img{
-width:100%;
-height:200px;
-object-fit:cover;
-}
-
-.product-content{
-padding:20px;
-text-align:center;
-}
-
-.product h3{
-margin-bottom:10px;
-}
-
-.price{
-color:#38bdf8;
-font-weight:bold;
-margin-bottom:15px;
-}
-
-button{
-padding:10px 25px;
-border:none;
-border-radius:30px;
-background:#38bdf8;
-color:black;
-font-weight:bold;
-cursor:pointer;
+background:#1e293b;border-radius:15px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.3);
 transition:.3s;
 }
+.product:hover{transform:translateY(-8px);}
+.product img{width:100%;height:200px;object-fit:cover;}
+.product-content{padding:15px;text-align:center;}
+.price{color:#38bdf8;font-weight:bold;margin:10px 0}
+button{padding:8px 15px;border:none;border-radius:20px;cursor:pointer;font-weight:bold;margin:5px;}
+.add-btn{background:#38bdf8;color:black}
+.remove-btn{background:#ef4444;color:white}
+.checkout-btn{background:#22c55e;color:black}
 
-button:hover{
-background:#0ea5e9;
-}
-
-.top-links{
-text-align:center;
-margin-top:40px;
-}
-
-a{
-color:#38bdf8;
-text-decoration:none;
-margin:0 10px;
-}
+/* ===== CART & ADMIN ===== */
+.section{background:#1e293b;padding:20px;border-radius:15px;margin:40px auto;max-width:900px;}
+input{width:100%;padding:10px;margin:10px 0;border-radius:8px;border:none;}
 </style>
 </head>
 
 <body>
 
-<h1>منتجاتنا 🛍</h1>
+<!-- Intro Screen -->
+<div class="intro-screen">مشروعي الفاخر</div>
 
-<div class="products-grid" id="products"></div>
+<!-- Hero -->
+<section class="hero">
+<div class="hero-img"></div>
+<div class="overlay"></div>
+<div class="content">
+<h1>مستقبل تجارتك يبدأ الآن</h1>
+<p>منصة تجمع كل وسائل البيع في تجربة واحدة ذكية وسريعة</p>
+<a href="#products-section" class="btn">ابدأ الآن</a>
+</div>
+</section>
 
-<div class="top-links">
-<a href="cart.html">🛒 الذهاب إلى السلة</a>
-<a href="index.html">⬅ الرجوع للرئيسية</a>
+<!-- PRODUCTS -->
+<section class="products-section" id="products-section">
+<h2>منتجاتنا 🛍</h2>
+<div class="grid" id="products"></div>
+</section>
+
+<!-- CART -->
+<div class="section">
+<h2>🛒 سلة التسوق</h2>
+<div id="cart"></div>
+<h3 id="total">المجموع: 0 د.ت</h3>
+<button class="checkout-btn" onclick="checkout()">إتمام الشراء</button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="section">
+<h2>⚙ لوحة إدارة المنتجات</h2>
+<input type="text" id="newName" placeholder="اسم المنتج">
+<input type="number" id="newPrice" placeholder="السعر">
+<input type="text" id="newImage" placeholder="رابط صورة المنتج">
+<button class="add-btn" onclick="addProduct()">إضافة منتج</button>
 </div>
 
 <script>
+/* Intro animation */
+setTimeout(()=>{
+document.querySelector(".intro-screen").style.display="none";
+document.querySelector(".hero").classList.add("active");
+document.body.style.overflow="auto";
+},1200);
 
-// قائمة المنتجات (تضيف هنا فقط مستقبلاً إن أردت)
-const products = [
-{
-name: "سماعات بلوتوث احترافية",
-price: 120,
-image: "https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9?auto=format&fit=crop&w=800&q=80"
-},
-{
-name: "ساعة ذكية رياضية",
-price: 250,
-image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
-},
-{
-name: "حقيبة أعمال فاخرة",
-price: 180,
-image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80"
-},
-{
-name: "كاميرا احترافية",
-price: 900,
-image: "https://images.unsplash.com/photo-1519183071298-a2962be96b43?auto=format&fit=crop&w=800&q=80"
-}
+document.addEventListener("mousemove",(e)=>{
+let x=(window.innerWidth/2 - e.clientX)/40;
+let y=(window.innerHeight/2 - e.clientY)/40;
+document.querySelector(".hero").style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+
+/* Products & Cart */
+let products = JSON.parse(localStorage.getItem("products")) || [
+{name:"سماعات بلوتوث",price:120,image:"https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9?auto=format&fit=crop&w=800&q=80"},
+{name:"ساعة ذكية",price:250,image:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"}
 ];
 
-// عرض المنتجات تلقائياً
-const container = document.getElementById("products");
-
-products.forEach((product,index)=>{
-container.innerHTML += `
-<div class="product">
-<img src="${product.image}">
-<div class="product-content">
-<h3>${product.name}</h3>
-<div class="price">${product.price} د.ت</div>
-<button onclick="addToCart(${index})">أضف للسلة</button>
-</div>
-</div>
-`;
-});
-
-// إضافة للسلة
-function addToCart(index){
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-cart.push({
-name: products[index].name,
-price: products[index].price
+function saveProducts(){localStorage.setItem("products",JSON.stringify(products));}
+function saveCart(){localStorage.setItem("cart",JSON.stringify(cart));}
+
+function renderProducts(){
+const container=document.getElementById("products");
+container.innerHTML="";
+products.forEach((p,i)=>{
+container.innerHTML+=`
+<div class="product">
+<img src="${p.image}">
+<div class="product-content">
+<h3>${p.name}</h3>
+<div class="price">${p.price} د.ت</div>
+<button class="add-btn" onclick="addToCart(${i})">أضف للسلة</button>
+</div>
+</div>`;
 });
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-alert("تمت إضافة المنتج إلى السلة ✅");
 }
 
+function renderCart(){
+const container=document.getElementById("cart");
+container.innerHTML="";
+let total=0;
+cart.forEach((item,i)=>{
+total+=item.price;
+container.innerHTML+=`<p>${item.name} - ${item.price} د.ت 
+<button class="remove-btn" onclick="removeFromCart(${i})">حذف</button></p>`;
+});
+document.getElementById("total").innerText="المجموع: "+total+" د.ت";
+}
+
+function addToCart(i){cart.push(products[i]);saveCart();renderCart();}
+function removeFromCart(i){cart.splice(i,1);saveCart();renderCart();}
+function checkout(){
+if(cart.length===0){alert("السلة فارغة");return;}
+alert("تم الطلب بنجاح 🚀");cart=[];saveCart();renderCart();
+}
+
+function addProduct(){
+const name=document.getElementById("newName").value;
+const price=parseFloat(document.getElementById("newPrice").value);
+const image=document.getElementById("newImage").value;
+if(!name||!price||!image){alert("أكمل جميع البيانات");return;}
+products.push({name,price,image});saveProducts();renderProducts();
+document.getElementById("newName").value="";document.getElementById("newPrice").value="";document.getElementById("newImage").value="";
+}
+
+/* Initial render */
+renderProducts();
+renderCart();
 </script>
 
 </body>

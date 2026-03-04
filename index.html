@@ -3,173 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجر مشروعي الفاخر</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-
+<title>مشروعي الفاخر - متجر إلكتروني</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-
-body{background:#0f172a;color:white;overflow-x:hidden}
-
-h1,h2{text-align:center;margin:20px 0}
-
-/* ===== INTRO HERO ===== */
-.intro-screen{
-position:fixed;inset:0;background:#000;z-index:1000;
-display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;font-weight:bold;
-}
-
-.hero{
-position:relative;height:80vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.hero-img{
-position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;
-transform:scale(1.4);filter:blur(20px);opacity:0;transition:2s cubic-bezier(.19,1,.22,1);}
-.overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.9));}
-.content{position:relative;text-align:center;z-index:2;transform:translateY(40px);opacity:0;transition:1.2s ease 1.5s;}
-.content h1{font-size:3rem;margin-bottom:15px;}
-.content p{color:#ccc;margin-bottom:30px;font-size:1.2rem;}
-.btn{padding:12px 40px;background:white;color:black;border-radius:50px;text-decoration:none;font-weight:bold;transition:.3s;}
-.btn:hover{transform:scale(1.1);}
-
-/* ===== PRODUCTS GRID ===== */
-.products-section{padding:30px 20px;max-width:1200px;margin:auto;}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.product{
-background:#1e293b;border-radius:15px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.3);
-transition:.3s;}
-.product:hover{transform:translateY(-8px);}
-.product img{width:100%;height:200px;object-fit:cover;}
-.product-content{padding:15px;text-align:center;}
-.price{color:#38bdf8;font-weight:bold;margin:10px 0}
-button{padding:8px 15px;border:none;border-radius:20px;cursor:pointer;font-weight:bold;margin:5px;}
-.add-btn{background:#38bdf8;color:black}
-.remove-btn{background:#ef4444;color:white}
-.checkout-btn{background:#22c55e;color:black}
-
-/* ===== CART & ADMIN ===== */
-.section{background:#1e293b;padding:20px;border-radius:15px;margin:40px auto;max-width:900px;}
-input{width:100%;padding:10px;margin:10px 0;border-radius:8px;border:none;}
-
-.top-links{text-align:center;margin-bottom:30px;}
-a{color:#38bdf8;text-decoration:none;margin:0 10px;}
+/* نفس CSS السابق مع تحسينات */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;scroll-behavior:smooth;}
+body{background:#f5f5f5;color:#333;line-height:1.6;}
+header{background:#111;color:#fff;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
+header h1{font-size:1.8rem;}
+nav a{color:#fff;text-decoration:none;margin-left:1.5rem;position:relative;font-weight:500;}
+nav a::after{content:'';position:absolute;width:0;height:2px;background:#ff3f3f;left:0;bottom:-3px;transition:0.3s;}
+nav a:hover::after{width:100%;}
+.hero{background:url('https://images.unsplash.com/photo-1581092580494-5d7aeb74f2e7?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;height:450px;display:flex;justify-content:center;align-items:center;color:#fff;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.45);}
+.hero-content{position:relative;z-index:1;}
+.hero h2{font-size:2.5rem;margin-bottom:1rem;text-shadow:0 2px 10px rgba(0,0,0,0.6);}
+.hero button{padding:0.8rem 2rem;font-size:1rem;border:none;background:#ff3f3f;color:#fff;cursor:pointer;border-radius:5px;box-shadow:0 4px 10px rgba(255,63,63,0.4);}
+.hero button:hover{background:#e63946;transform:scale(1.05);transition:0.3s;}
+.filter{max-width:1200px;margin:2rem auto;padding:0 1rem;text-align:center;}
+.filter button{padding:0.5rem 1rem;margin:0.3rem;border:none;background:#111;color:#fff;cursor:pointer;border-radius:5px;transition:0.3s;box-shadow:0 2px 5px rgba(0,0,0,0.3);}
+.filter button:hover{background:#ff3f3f;transform:scale(1.05);}
+.search-box{max-width:1200px;margin:1rem auto;text-align:center;}
+.search-box input{padding:0.5rem;width:50%;border:1px solid #ccc;border-radius:5px;font-size:1rem;box-shadow:0 2px 5px rgba(0,0,0,0.2);}
+.search-box input:focus{outline:none;border-color:#ff3f3f;box-shadow:0 0 10px rgba(255,63,63,0.5);}
+.products{max-width:1200px;margin:2rem auto;padding:0 1rem;}
+.products h3{margin-bottom:1.5rem;font-size:2rem;text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.card{background:#fff;border-radius:15px;overflow:hidden;display:flex;flex-direction:column;transition:all 0.4s ease;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+.card img{width:100%;height:200px;object-fit:cover;transition: transform 0.5s ease, filter 0.5s ease;}
+.card:hover img{transform:scale(1.05);filter:brightness(1.15);}
+.card-content{padding:1rem;flex:1;display:flex;flex-direction:column;transition: all 0.3s ease;}
+.card-content h4{margin-bottom:0.5rem;font-size:1.2rem;color:#111;}
+.card-content p{flex:1;font-size:0.95rem;margin-bottom:0.5rem;color:#555;}
+.card-content strong{margin-bottom:0.5rem;font-size:1rem;color:#111;}
+.card-content button{padding:0.5rem;border:none;background:#111;color:#fff;cursor:pointer;border-radius:5px;box-shadow:0 3px 10px rgba(0,0,0,0.2);}
+.card-content button:hover{background:#ff3f3f;transform:scale(1.05);}
+.pagination{max-width:1200px;margin:2rem auto;text-align:center;}
+.pagination button{padding:0.5rem 1rem;margin:0.3rem;border:none;background:#111;color:#fff;cursor:pointer;border-radius:5px;}
+.pagination button:hover, .pagination button.active{background:#ff3f3f;transform:scale(1.05);}
+footer{background:#111;color:#fff;padding:2rem;text-align:center;}
+footer a{color:#ff3f3f;text-decoration:none;margin:0 0.5rem;}
+footer a:hover{text-shadow:0 0 5px rgba(255,63,63,0.7);}
+#cart{padding:2rem;max-width:800px;margin:2rem auto;background:#fff;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+#cart ul{list-style:none;margin-bottom:1rem;}
+#cart li{margin-bottom:0.5rem;}
 </style>
 </head>
-
 <body>
 
-<!-- Intro Screen -->
-<div class="intro-screen">مشروعي الفاخر</div>
+<header>
+<h1>مشروعي الفاخر</h1>
+<nav>
+<a href="#hero">الرئيسية</a>
+<a href="#services">المنتجات</a>
+<a href="#about">حول</a>
+<a href="#contact">تواصل</a>
+<a href="#cart">سلة التسوق</a>
+</nav>
+</header>
 
-<section class="hero">
-<div class="hero-img"></div>
-<div class="overlay"></div>
-<div class="content">
-<h1>مستقبل تجارتك يبدأ الآن</h1>
-<p>منصة تجمع كل وسائل البيع في تجربة واحدة ذكية وسريعة</p>
-<a href="#products-section" class="btn">ابدأ الآن</a>
+<section class="hero" id="hero">
+<div class="hero-content">
+<h2>تسوق منتجاتنا الرقمية والفاخرة</h2>
+<button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'});">تصفح المنتجات</button>
 </div>
 </section>
 
-<!-- PRODUCTS -->
-<section class="products-section" id="products-section">
-<h2>منتجاتنا 🛍</h2>
-<div class="grid" id="products"></div>
+<div class="filter">
+<button onclick="filterProducts('all')">الكل</button>
+<button onclick="filterProducts('electronics')">إلكترونيات</button>
+<button onclick="filterProducts('clothes')">ملابس</button>
+<button onclick="filterProducts('home')">منزلية</button>
+</div>
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="ابحث عن المنتج...">
+</div>
+
+<section class="products" id="services">
+<h3>منتجاتنا المميزة</h3>
+<div class="grid" id="productGrid">
+<!-- بطاقة مثال -->
+<div class="card" data-category="electronics">
+<img src="https://images.unsplash.com/photo-1606813903605-5e40b6e3b5aa?auto=format&fit=crop&w=800&q=80" alt="">
+<div class="card-content">
+<h4>سماعة رأس لاسلكية</h4>
+<p>سماعة بجودة عالية مع بطارية تدوم 24 ساعة.</p>
+<strong>السعر: 120 دينار</strong>
+<button onclick="addToCart('سماعة رأس لاسلكية',120)">أضف للسلة</button>
+</div>
+</div>
+<!-- أضف باقي المنتجات بنفس الشكل -->
+</div>
 </section>
 
-<!-- CART -->
-<div class="section">
-<h2>🛒 سلة التسوق</h2>
-<div id="cart"></div>
-<h3 id="total">المجموع: 0 د.ت</h3>
-<button class="checkout-btn" onclick="checkout()">إتمام الشراء</button>
-</div>
+<section id="about" style="padding:2rem; max-width:1000px; margin:0 auto; text-align:center;">
+<h2>حول المشروع</h2>
+<p>مشروعي الفاخر هو متجر رقمي متكامل يقدم منتجات عالية الجودة إلكترونية، ملابس، ومواد منزلية. هدفنا تقديم تجربة تسوق سلسة وآمنة مع أفضل الأسعار.</p>
+</section>
 
-<!-- ADMIN PANEL -->
-<div class="section">
-<h2>⚙ لوحة إدارة المنتجات</h2>
-<input type="text" id="newName" placeholder="اسم المنتج">
-<input type="number" id="newPrice" placeholder="السعر">
-<input type="text" id="newImage" placeholder="رابط صورة المنتج">
-<button class="add-btn" onclick="addProduct()">إضافة منتج</button>
-</div>
+<section id="contact" style="padding:2rem; max-width:800px; margin:0 auto; text-align:center;">
+<h2>تواصل معنا</h2>
+<p>للاستفسارات أو التعاون، راسلنا على: <strong>contact@myproject.com</strong> أو اتصل على الرقم: <strong>53 048 531</strong></p>
+</section>
 
+<section id="cart">
+<h2>سلة التسوق</h2>
+<ul id="cartItems"></ul>
+<p id="totalPrice">المجموع: 0 دينار</p>
+<button id="checkoutBtn">إتمام الشراء</button>
+</section>
+
+<div class="pagination" id="pagination"></div>
+
+<footer>
+حقوق النشر &copy; 2026 | 
+<a href="#hero">الرئيسية</a> | 
+<a href="#services">المنتجات</a> | 
+<a href="#cart">سلة التسوق</a> | 
+<a href="#contact">تواصل</a>
+</footer>
+
+<!-- Stripe JS -->
+<script src="https://js.stripe.com/v3/"></script>
 <script>
-/* Intro animation */
-setTimeout(()=>{
-document.querySelector(".intro-screen").style.display="none";
-document.querySelector(".hero").classList.add("active");
-document.body.style.overflow="auto";
-},1200);
-document.addEventListener("mousemove",(e)=>{
-let x=(window.innerWidth/2 - e.clientX)/40;
-let y=(window.innerHeight/2 - e.clientY)/40;
-document.querySelector(".hero").style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
-});
+const stripe = Stripe('pk_test_XXXXXXXXXXXXXXXXXXXX'); // ضع هنا مفتاح Public Test الخاص بك
 
-/* Products & Cart */
-let products = JSON.parse(localStorage.getItem("products")) || [
-{name:"سماعات بلوتوث",price:120,image:"https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9?auto=format&fit=crop&w=800&q=80"},
-{name:"ساعة ذكية",price:250,image:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"}
-];
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function saveProducts(){localStorage.setItem("products",JSON.stringify(products));}
-function saveCart(){localStorage.setItem("cart",JSON.stringify(cart));}
-
-function renderProducts(){
-const container=document.getElementById("products");
-container.innerHTML="";
-products.forEach((p,i)=>{
-container.innerHTML+=`
-<div class="product">
-<img src="${p.image}">
-<div class="product-content">
-<h3>${p.name}</h3>
-<div class="price">${p.price} د.ت</div>
-<button class="add-btn" onclick="addToCart(${i})">أضف للسلة</button>
-</div>
-</div>`;
-});
+// Filter & Search & Pagination
+const allCards=document.querySelectorAll('#productGrid .card');
+function filterProducts(category){
+allCards.forEach(card=>{card.style.display=(category==='all'||card.dataset.category===category)?'flex':'none';});
+paginate(1);
 }
+document.getElementById('searchInput').addEventListener('input',e=>{
+const query=e.target.value.toLowerCase();
+allCards.forEach(card=>{
+const title=card.querySelector('h4').textContent.toLowerCase();
+const desc=card.querySelector('p').textContent.toLowerCase();
+card.style.display=(title.includes(query)||desc.includes(query))?'flex':'none';
+});
+paginate(1);
+});
+const itemsPerPage=4;
+function paginate(page){
+const visible=Array.from(allCards).filter(c=>c.style.display!=='none');
+const totalPages=Math.ceil(visible.length/itemsPerPage);
+visible.forEach((c,i)=>c.style.display=(i>=(page-1)*itemsPerPage && i<page*itemsPerPage)?'flex':'none');
+const pagination=document.getElementById('pagination'); pagination.innerHTML='';
+for(let i=1;i<=totalPages;i++){
+const btn=document.createElement('button'); btn.textContent=i;
+if(i===page) btn.classList.add('active'); btn.onclick=()=>paginate(i);
+pagination.appendChild(btn);
+}
+}
+paginate(1);
 
+// Shopping Cart
+let cart=[];
+function addToCart(name,price){cart.push({name,price});renderCart();}
 function renderCart(){
-const container=document.getElementById("cart");
-container.innerHTML="";
-let total=0;
-cart.forEach((item,i)=>{
-total+=item.price;
-container.innerHTML+=`<p>${item.name} - ${item.price} د.ت 
-<button class="remove-btn" onclick="removeFromCart(${i})">حذف</button></p>`;
+const list=document.getElementById('cartItems'); list.innerHTML=''; let total=0;
+cart.forEach((item,i)=>{total+=item.price; list.innerHTML+=`<li>${item.name} - ${item.price} دينار <button onclick="removeItem(${i})">حذف</button></li>`;});
+document.getElementById('totalPrice').textContent=`المجموع: ${total} دينار`;
+}
+function removeItem(index){cart.splice(index,1);renderCart();}
+
+// Stripe Checkout
+document.getElementById('checkoutBtn').addEventListener('click', async ()=>{
+if(cart.length===0){alert('السلة فارغة'); return;}
+const total=cart.reduce((a,b)=>a+b.price,0)*100; // بالقرش (Stripe يعمل بالـ cents)
+try{
+const {error}=await stripe.redirectToCheckout({
+lineItems: cart.map(item=>({price_data:{currency:'usd',product_data:{name:item.name},unit_amount:item.price*100},quantity:1})),
+mode:'payment',
+successUrl:window.location.href+'?success=true',
+cancelUrl:window.location.href+'?canceled=true'
 });
-document.getElementById("total").innerText="المجموع: "+total+" د.ت";
-}
-
-function addToCart(i){cart.push(products[i]);saveCart();renderCart();}
-function removeFromCart(i){cart.splice(i,1);saveCart();renderCart();}
-function checkout(){
-if(cart.length===0){alert("السلة فارغة");return;}
-alert("تم الطلب بنجاح 🚀");cart=[];saveCart();renderCart();
-}
-
-function addProduct(){
-const name=document.getElementById("newName").value;
-const price=parseFloat(document.getElementById("newPrice").value);
-const image=document.getElementById("newImage").value;
-if(!name||!price||!image){alert("أكمل جميع البيانات");return;}
-products.push({name,price,image});saveProducts();renderProducts();
-document.getElementById("newName").value="";document.getElementById("newPrice").value="";document.getElementById("newImage").value="";
-}
-
-/* Initial render */
-renderProducts();
-renderCart();
+if(error) alert(error.message);
+}catch(err){console.error(err);}
+});
 </script>
-
 </body>
 </html>

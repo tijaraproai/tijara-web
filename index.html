@@ -3,162 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجر مشروعي الفاخر - كامل</title>
+<title>متجر مشروعي الفاخر</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
-body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f5f5;margin:0;padding:0;}
-header{background:#111;color:#fff;padding:1rem 2rem;position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;z-index:100;}
-header h1{font-size:1.8rem;}
-nav a{color:#fff;text-decoration:none;margin-left:1rem;position:relative;font-weight:500;}
-nav a:hover::after{width:100%;}
-nav a::after{content:'';position:absolute;width:0;height:2px;background:#ff3f3f;left:0;bottom:-3px;transition:0.3s;}
-section{padding:2rem;max-width:1200px;margin:0 auto;}
-h2,h3{margin-bottom:1rem;text-align:center;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
-.card{background:#fff;border-radius:15px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 10px rgba(0,0,0,0.1);transition:0.3s;}
-.card img{width:100%;height:200px;object-fit:cover;transition:0.5s;}
-.card:hover img{transform:scale(1.05);}
-.card-content{padding:1rem;display:flex;flex-direction:column;}
-.card-content h4{margin-bottom:0.5rem;}
-.card-content p{margin-bottom:0.5rem;color:#555;}
-.card-content strong{margin-bottom:0.5rem;color:#111;}
-.card-content button{padding:0.5rem;border:none;background:#111;color:#fff;cursor:pointer;border-radius:5px;}
-.card-content button:hover{background:#ff3f3f;transform:scale(1.05);}
-#cart{background:#fff;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-top:2rem;padding:1rem;}
-#cart ul{list-style:none;margin-bottom:1rem;}
-#cart li{margin-bottom:0.5rem;}
-.admin-panel{background:#222;color:#fff;border-radius:10px;padding:1rem;margin-bottom:2rem;}
-.admin-panel input, .admin-panel select{margin:0.3rem;padding:0.5rem;border-radius:5px;border:none;}
-.admin-panel button{margin-top:0.5rem;padding:0.5rem;border:none;background:#ff3f3f;color:#fff;border-radius:5px;cursor:pointer;}
-.admin-panel button:hover{background:#e63946;}
-.orders{background:#fff;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-top:2rem;padding:1rem;}
-.orders h3{text-align:center;margin-bottom:1rem;}
-.orders ul{list-style:none;}
-.orders li{margin-bottom:0.5rem;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+
+body{background:#0f172a;color:white;padding:20px}
+
+h1,h2{text-align:center;margin:30px 0}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+max-width:1200px;
+margin:auto;
+}
+
+.product{
+background:#1e293b;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.product img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.product-content{
+padding:15px;
+text-align:center;
+}
+
+.price{color:#38bdf8;font-weight:bold;margin:10px 0}
+
+button{
+padding:8px 15px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+margin:5px;
+}
+
+.add-btn{background:#38bdf8;color:black}
+.remove-btn{background:#ef4444;color:white}
+.checkout-btn{background:#22c55e;color:black}
+
+.section{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+margin:40px auto;
+max-width:800px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+}
 </style>
 </head>
+
 <body>
 
-<header>
-<h1>مشروعي الفاخر</h1>
-<nav>
-<a href="#products">المنتجات</a>
-<a href="#cart">سلة التسوق</a>
-<a href="#admin">لوحة الإدارة</a>
-<a href="#orders">الطلبات</a>
-</nav>
-</header>
+<h1>🛍 متجر مشروعي الفاخر</h1>
 
-<section id="products">
-<h2>منتجاتنا المميزة</h2>
-<div class="grid" id="productGrid">
-<!-- المنتجات ستُضاف ديناميكياً -->
+<h2>منتجاتنا</h2>
+<div class="grid" id="products"></div>
+
+<div class="section">
+<h2>🛒 سلة التسوق</h2>
+<div id="cart"></div>
+<h3 id="total">المجموع: 0 د.ت</h3>
+<button class="checkout-btn" onclick="checkout()">إتمام الشراء</button>
 </div>
-</section>
 
-<section id="cart">
-<h2>سلة التسوق</h2>
-<ul id="cartItems"></ul>
-<p id="totalPrice">المجموع: 0 دينار</p>
-<button id="checkoutBtn">إتمام الشراء</button>
-</section>
-
-<section id="admin">
-<h2>لوحة إدارة المنتجات</h2>
-<div class="admin-panel">
-<h3>إضافة منتج جديد</h3>
-<input type="text" id="productName" placeholder="اسم المنتج">
-<input type="number" id="productPrice" placeholder="السعر">
-<input type="text" id="productDesc" placeholder="وصف المنتج">
-<input type="text" id="productImage" placeholder="رابط الصورة">
-<select id="productCategory">
-<option value="electronics">إلكترونيات</option>
-<option value="clothes">ملابس</option>
-<option value="home">منزلية</option>
-</select>
-<button id="addProductBtn">أضف المنتج</button>
+<div class="section">
+<h2>⚙ لوحة إدارة المنتجات</h2>
+<input type="text" id="newName" placeholder="اسم المنتج">
+<input type="number" id="newPrice" placeholder="السعر">
+<input type="text" id="newImage" placeholder="رابط صورة المنتج">
+<button class="add-btn" onclick="addProduct()">إضافة منتج</button>
 </div>
-</section>
 
-<section id="orders">
-<h2>الطلبات</h2>
-<div class="orders">
-<ul id="orderList"></ul>
-</div>
-</section>
-
-<footer>
-<p>تواصل معنا: 53 048 531 | contact@myproject.com</p>
-</footer>
-
-<script src="https://js.stripe.com/v3/"></script>
 <script>
-const stripe = Stripe('pk_test_XXXXXXXXXXXXXXXXXXXX'); // ضع مفتاحك هنا
-let products = [];
-let cart = [];
-let orders = [];
 
-// Render Products
+let products = JSON.parse(localStorage.getItem("products")) || [
+{
+name:"سماعات بلوتوث",
+price:120,
+image:"https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9?auto=format&fit=crop&w=800&q=80"
+},
+{
+name:"ساعة ذكية",
+price:250,
+image:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+}
+];
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveProducts(){
+localStorage.setItem("products",JSON.stringify(products));
+}
+
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart));
+}
+
 function renderProducts(){
-const grid = document.getElementById('productGrid'); grid.innerHTML='';
+const container=document.getElementById("products");
+container.innerHTML="";
 products.forEach((p,i)=>{
-const card=document.createElement('div'); card.className='card';
-card.innerHTML=`<img src="${p.image}" alt="${p.name}">
-<div class="card-content">
-<h4>${p.name}</h4>
-<p>${p.desc}</p>
-<strong>السعر: ${p.price} دينار</strong>
-<button onclick="addToCart(${i})">أضف للسلة</button>
+container.innerHTML+=`
+<div class="product">
+<img src="${p.image}">
+<div class="product-content">
+<h3>${p.name}</h3>
+<div class="price">${p.price} د.ت</div>
+<button class="add-btn" onclick="addToCart(${i})">أضف للسلة</button>
+</div>
 </div>`;
-grid.appendChild(card);
 });
 }
 
-// Add to Cart
-function addToCart(index){
-cart.push(products[index]);
+function renderCart(){
+const container=document.getElementById("cart");
+container.innerHTML="";
+let total=0;
+
+cart.forEach((item,i)=>{
+total+=item.price;
+container.innerHTML+=`
+<p>${item.name} - ${item.price} د.ت 
+<button class="remove-btn" onclick="removeFromCart(${i})">حذف</button></p>`;
+});
+
+document.getElementById("total").innerText="المجموع: "+total+" د.ت";
+}
+
+function addToCart(i){
+cart.push(products[i]);
+saveCart();
 renderCart();
 }
-function renderCart(){
-const list=document.getElementById('cartItems'); list.innerHTML=''; let total=0;
-cart.forEach((item,i)=>{total+=item.price; list.innerHTML+=`<li>${item.name} - ${item.price} دينار <button onclick="removeItem(${i})">حذف</button></li>`;});
-document.getElementById('totalPrice').textContent=`المجموع: ${total} دينار`;
-}
-function removeItem(i){cart.splice(i,1); renderCart();}
 
-// Checkout
-document.getElementById('checkoutBtn').addEventListener('click',async()=>{
-if(cart.length===0){alert('السلة فارغة');return;}
-const totalAmount = cart.reduce((a,b)=>a+b.price,0)*100; // بالدينار ×100 للـ Stripe
-orders.push([...cart]); // حفظ الطلب
-renderOrders();
-cart=[]; renderCart();
-// تجربة Checkout
-alert('تمت عملية الشراء بنجاح! المجموع: '+totalAmount/100+' دينار');
-});
-
-// Render Orders
-function renderOrders(){
-const list=document.getElementById('orderList'); list.innerHTML='';
-orders.forEach((order,i)=>{
-list.innerHTML+=`<li>طلب ${i+1}: ${order.map(p=>p.name).join(', ')} - المجموع: ${order.reduce((a,b)=>a+b.price,0)} دينار</li>`;
-});
+function removeFromCart(i){
+cart.splice(i,1);
+saveCart();
+renderCart();
 }
 
-// Admin - Add Product
-document.getElementById('addProductBtn').addEventListener('click',()=>{
-const name=document.getElementById('productName').value;
-const price=parseFloat(document.getElementById('productPrice').value);
-const desc=document.getElementById('productDesc').value;
-const image=document.getElementById('productImage').value;
-const category=document.getElementById('productCategory').value;
-if(!name||!price||!desc||!image){alert('اكمل جميع الحقول');return;}
-products.push({name,price,desc,image,category});
+function checkout(){
+if(cart.length===0){
+alert("السلة فارغة");
+return;
+}
+alert("تم الطلب بنجاح 🚀");
+cart=[];
+saveCart();
+renderCart();
+}
+
+function addProduct(){
+const name=document.getElementById("newName").value;
+const price=parseFloat(document.getElementById("newPrice").value);
+const image=document.getElementById("newImage").value;
+
+if(!name||!price||!image){
+alert("أكمل جميع البيانات");
+return;
+}
+
+products.push({name,price,image});
+saveProducts();
 renderProducts();
-document.getElementById('productName').value='';
-document.getElementById('productPrice').value='';
-document.getElementById('productDesc').value='';
-document.getElementById('productImage').value='';
-});
+
+document.getElementById("newName").value="";
+document.getElementById("newPrice").value="";
+document.getElementById("newImage").value="";
+}
+
+renderProducts();
+renderCart();
+
 </script>
+
 </body>
 </html>

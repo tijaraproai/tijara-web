@@ -4,8 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>المنتجات</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap" rel="stylesheet">
+
 <style>
-body{font-family:Cairo;background:#0f172a;color:white;text-align:center;padding:50px;}
+body{
+font-family:'Cairo',sans-serif;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:50px;
+}
+
 .product{
 background:#1e293b;
 padding:30px;
@@ -13,16 +23,29 @@ margin:20px auto;
 width:300px;
 border-radius:15px;
 }
+
 button{
 padding:10px 20px;
 border:none;
 border-radius:8px;
 background:#38bdf8;
 cursor:pointer;
+font-weight:bold;
 }
-a{color:#38bdf8;text-decoration:none;}
+
+button:hover{
+opacity:0.8;
+}
+
+a{
+color:#38bdf8;
+text-decoration:none;
+display:block;
+margin-top:30px;
+}
 </style>
 </head>
+
 <body>
 
 <h1>منتجاتنا 🛍</h1>
@@ -30,10 +53,29 @@ a{color:#38bdf8;text-decoration:none;}
 <div class="product">
 <h3>منتج 1</h3>
 <p>وصف قصير للمنتج</p>
-<button>أضف للسلة</button>
+<p>السعر: 50 د.ت</p>
+<button onclick="addToCart('منتج 1',50)">أضف للسلة</button>
 </div>
 
+<a href="cart.html">🛒 الذهاب إلى السلة</a>
 <a href="index.html">⬅ الرجوع للرئيسية</a>
+
+<script>
+function addToCart(name,price){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+name:name,
+price:price
+});
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+alert("تمت إضافة المنتج إلى السلة ✅");
+
+}
+</script>
 
 </body>
 </html>

@@ -3,45 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>المنتجات</title>
+<title>منتجاتنا | Tijara</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-body{
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:'Cairo',sans-serif;
+}
+
+body{
 background:#0f172a;
 color:white;
+padding:40px;
+}
+
+h1{
 text-align:center;
-padding:50px;
+margin-bottom:40px;
+font-size:2.5rem;
+}
+
+.products-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+max-width:1200px;
+margin:auto;
 }
 
 .product{
 background:#1e293b;
-padding:30px;
-margin:20px auto;
-width:300px;
-border-radius:15px;
+border-radius:20px;
+overflow:hidden;
+transition:.3s;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.product:hover{
+transform:translateY(-8px);
+}
+
+.product img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.product-content{
+padding:20px;
+text-align:center;
+}
+
+.product h3{
+margin-bottom:10px;
+}
+
+.price{
+color:#38bdf8;
+font-weight:bold;
+margin-bottom:15px;
 }
 
 button{
-padding:10px 20px;
+padding:10px 25px;
 border:none;
-border-radius:8px;
+border-radius:30px;
 background:#38bdf8;
-cursor:pointer;
+color:black;
 font-weight:bold;
+cursor:pointer;
+transition:.3s;
 }
 
 button:hover{
-opacity:0.8;
+background:#0ea5e9;
+}
+
+.top-links{
+text-align:center;
+margin-top:40px;
 }
 
 a{
 color:#38bdf8;
 text-decoration:none;
-display:block;
-margin-top:30px;
+margin:0 10px;
 }
 </style>
 </head>
@@ -50,31 +100,69 @@ margin-top:30px;
 
 <h1>منتجاتنا 🛍</h1>
 
-<div class="product">
-<h3>منتج 1</h3>
-<p>وصف قصير للمنتج</p>
-<p>السعر: 50 د.ت</p>
-<button onclick="addToCart('منتج 1',50)">أضف للسلة</button>
-</div>
+<div class="products-grid" id="products"></div>
 
+<div class="top-links">
 <a href="cart.html">🛒 الذهاب إلى السلة</a>
 <a href="index.html">⬅ الرجوع للرئيسية</a>
+</div>
 
 <script>
-function addToCart(name,price){
 
+// قائمة المنتجات (تضيف هنا فقط مستقبلاً إن أردت)
+const products = [
+{
+name: "سماعات بلوتوث احترافية",
+price: 120,
+image: "https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9?auto=format&fit=crop&w=800&q=80"
+},
+{
+name: "ساعة ذكية رياضية",
+price: 250,
+image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+},
+{
+name: "حقيبة أعمال فاخرة",
+price: 180,
+image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80"
+},
+{
+name: "كاميرا احترافية",
+price: 900,
+image: "https://images.unsplash.com/photo-1519183071298-a2962be96b43?auto=format&fit=crop&w=800&q=80"
+}
+];
+
+// عرض المنتجات تلقائياً
+const container = document.getElementById("products");
+
+products.forEach((product,index)=>{
+container.innerHTML += `
+<div class="product">
+<img src="${product.image}">
+<div class="product-content">
+<h3>${product.name}</h3>
+<div class="price">${product.price} د.ت</div>
+<button onclick="addToCart(${index})">أضف للسلة</button>
+</div>
+</div>
+`;
+});
+
+// إضافة للسلة
+function addToCart(index){
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 cart.push({
-name:name,
-price:price
+name: products[index].name,
+price: products[index].price
 });
 
 localStorage.setItem("cart",JSON.stringify(cart));
 
 alert("تمت إضافة المنتج إلى السلة ✅");
-
 }
+
 </script>
 
 </body>

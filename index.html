@@ -4,255 +4,194 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FORYOU | منصة التجارة الذكية</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Cairo',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+body{background:#0f172a;color:white;}
+/* NAVBAR */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 8%;background:#020617;position:sticky;top:0;z-index:1000;}
+.logo{display:flex;align-items:center;}
+.logo img{height:60px;width:auto;}
+nav ul{display:flex;gap:30px;list-style:none;}
+nav a{color:white;text-decoration:none;font-weight:bold;transition:.3s;}
+nav a:hover{color:#38bdf8;}
+/* HERO */
+.hero{height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px;background:linear-gradient(180deg,#020617,#0f172a);}
+.hero h1{font-size:55px;margin-bottom:20px;}
+.hero p{font-size:20px;color:#94a3b8;margin-bottom:40px;}
+.btn{background:#38bdf8;padding:15px 40px;border-radius:30px;text-decoration:none;color:black;font-weight:bold;}
 
-body{
-  background:#0f172a;
-  color:white;
-}
+/* FEATURES */
+.features{padding:80px 8%;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.feature{background:#1e293b;padding:30px;border-radius:15px;text-align:center;}
+.feature h3{margin-bottom:10px;color:#38bdf8;}
 
-/* ===== NAVBAR ===== */
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 8%;
-  background:#020617;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
+/* PRODUCTS */
+.products{padding:80px 8%;text-align:center;}
+.products h2{font-size:40px;margin-bottom:40px;}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.product{background:#1e293b;padding:20px;border-radius:15px;transition:.3s;}
+.product:hover{transform:translateY(-5px);}
+.product img{width:100%;border-radius:10px;margin-bottom:15px;}
+.product button{background:#38bdf8;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:bold;}
+.star-rating{color:#facc15;margin-bottom:10px;}
 
-.logo{
-  display:flex;
-  align-items:center;
-}
+/* SIDEBAR CART */
+#cartSidebar{position:fixed;top:0;right:-350px;width:350px;height:100%;background:#1e293b;padding:20px;box-shadow:-2px 0 10px rgba(0,0,0,0.5);transition:.3s;overflow-y:auto;z-index:1001;}
+#cartSidebar h2{margin-bottom:20px;}
+#cartItems .cart-item{display:flex;justify-content:space-between;margin-bottom:15px;padding:10px;background:#111827;border-radius:10px;}
+#cartSidebar button.closeCart{background:#ef4444;color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;}
 
-.logo img{
-  height:60px;
-  width:auto;
-}
-
-nav ul{
-  display:flex;
-  gap:30px;
-  list-style:none;
-}
-
-nav a{
-  color:white;
-  text-decoration:none;
-  font-weight:bold;
-  transition:0.3s;
-}
-
-nav a:hover{
-  color:#38bdf8;
-}
-
-/* ===== HERO ===== */
-.hero{
-  height:80vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px;
-  background:linear-gradient(180deg,#020617,#0f172a);
-}
-
-.hero h1{
-  font-size:55px;
-  margin-bottom:20px;
-}
-
-.hero p{
-  font-size:20px;
-  color:#94a3b8;
-  margin-bottom:40px;
-}
-
-.btn{
-  background:#38bdf8;
-  padding:15px 40px;
-  border-radius:30px;
-  text-decoration:none;
-  color:black;
-  font-weight:bold;
-}
-
-/* ===== FEATURES ===== */
-.features{
-  padding:80px 8%;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
-
-.feature{
-  background:#1e293b;
-  padding:30px;
-  border-radius:15px;
-  text-align:center;
-}
-
-.feature h3{
-  margin-bottom:10px;
-  color:#38bdf8;
-}
-
-/* ===== PRODUCTS ===== */
-.products{
-  padding:80px 8%;
-  text-align:center;
-}
-
-.products h2{
-  font-size:40px;
-  margin-bottom:40px;
-}
-
-.product-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
-
-.product{
-  background:#1e293b;
-  padding:20px;
-  border-radius:15px;
-  transition:0.3s;
-}
-
-.product:hover{
-  transform:translateY(-5px);
-}
-
-.product img{
-  width:100%;
-  border-radius:10px;
-  margin-bottom:15px;
-}
-
-.product button{
-  background:#38bdf8;
-  border:none;
-  padding:10px 20px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-/* ===== FOOTER ===== */
-footer{
-  margin-top:80px;
-  padding:40px;
-  text-align:center;
-  background:#020617;
-  color:#94a3b8;
-}
+/* SEARCH BAR */
+#searchBar{margin:20px 8%;padding:10px;width:calc(100%-16%);border-radius:10px;border:none;outline:none;font-size:16px;}
+/* FOOTER */
+footer{margin-top:80px;padding:40px;text-align:center;background:#020617;color:#94a3b8;}
 </style>
 </head>
-
 <body>
 
-<!-- ===== NAVBAR ===== -->
+<!-- NAVBAR -->
 <nav>
-
-<div class="logo">
-<img src=".github/logo.png" alt="FORYOU">
-</div>
-
-<ul>
-<li><a href="index.html">الرئيسية</a></li>
-<li><a href="products.html">المنتجات</a></li>
-<li><a href="cart.html">السلة</a></li>
-<li><a href="login.html">الدخول</a></li>
-</ul>
-
+  <div class="logo">
+    <img src=".github/logo.png" alt="FORYOU">
+  </div>
+  <ul>
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="products.html">المنتجات</a></li>
+    <li><a href="#" onclick="openCart()">السلة</a></li>
+    <li><a href="login.html">الدخول</a></li>
+  </ul>
 </nav>
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <section class="hero">
 <div>
 <h1>منصة FORYOU للتجارة الذكية</h1>
-<p>
-بيع وشراء المنتجات بسهولة وأمان في منصة واحدة
-</p>
-<a class="btn" href="products.html">
-تصفح المنتجات
-</a>
+<p>بيع وشراء المنتجات بسهولة وأمان في منصة واحدة</p>
+<a class="btn" href="#products">تصفح المنتجات</a>
 </div>
 </section>
 
-<!-- ===== FEATURES ===== -->
+<!-- FEATURES -->
 <section class="features">
 <div class="feature">
 <h3>⚡ سرعة فائقة</h3>
 <p>موقع سريع يعمل على جميع الأجهزة</p>
 </div>
-
 <div class="feature">
 <h3>🔒 أمان عالي</h3>
 <p>حماية بيانات المستخدمين والمعاملات</p>
 </div>
-
 <div class="feature">
 <h3>💳 دفع سهل</h3>
 <p>يدعم عدة طرق للدفع الإلكتروني</p>
 </div>
 </section>
 
-<!-- ===== PRODUCTS ===== -->
-<section class="products">
+<!-- SEARCH -->
+<input type="text" id="searchBar" placeholder="ابحث عن المنتجات...">
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
 <h2>منتجات مميزة</h2>
-<div class="product-grid">
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd">
-<h3>سماعات بلوتوث</h3>
-<p>120 د.ت</p>
-<button onclick="addToCart('سماعات بلوتوث',120)">
-أضف للسلة
-</button>
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12">
-<h3>ساعة ذكية</h3>
-<p>250 د.ت</p>
-<button onclick="addToCart('ساعة ذكية',250)">
-أضف للسلة
-</button>
-</div>
-
+<div class="product-grid" id="productGrid">
+<!-- المنتجات سيتم توليدها بواسطة JS -->
 </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- SIDEBAR CART -->
+<div id="cartSidebar">
+<button class="closeCart" onclick="closeCart()">✖ إغلاق</button>
+<h2>سلة التسوق</h2>
+<div id="cartItems"></div>
+<h3 id="cartTotal">الإجمالي: 0 د.ت</h3>
+<button onclick="checkout()" class="btn">إتمام الشراء</button>
+</div>
+
+<!-- FOOTER -->
 <footer>
-<p>
-© 2026 FORYOU PLATFORM
-</p>
+<p>© 2026 FORYOU PLATFORM</p>
 </footer>
 
 <script>
-function addToCart(name,price){
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-cart.push({name:name, price:price});
-localStorage.setItem("cart",JSON.stringify(cart));
-alert("تمت إضافة المنتج للسلة");
+// بيانات المنتجات وهمية عالية الجودة
+const products = [
+{name:'سماعات بلوتوث',price:120,img:'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd'},
+{name:'ساعة ذكية',price:250,img:'https://images.unsplash.com/photo-1546868871-7041f2a55e12'},
+{name:'كاميرا رقمية',price:500,img:'https://images.unsplash.com/photo-1519183071298-a2962e8b7f64'},
+{name:'حقيبة ظهر',price:180,img:'https://images.unsplash.com/photo-1596464716121-6c27c5e4b622'},
+{name:'هاتف ذكي',price:1200,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9'}
+];
+
+// توليد المنتجات في الصفحة
+const productGrid = document.getElementById('productGrid');
+
+function renderProducts(filter=''){
+  productGrid.innerHTML = '';
+  products.filter(p=>p.name.includes(filter)).forEach(p=>{
+    const div = document.createElement('div');
+    div.classList.add('product');
+    div.innerHTML = `
+      <img src="${p.img}">
+      <div class="star-rating">⭐⭐⭐⭐⭐</div>
+      <h3>${p.name}</h3>
+      <p>${p.price} د.ت</p>
+      <button onclick="addToCart('${p.name}',${p.price})">أضف للسلة</button>
+    `;
+    productGrid.appendChild(div);
+  });
 }
+
+renderProducts();
+
+// البحث المباشر
+document.getElementById('searchBar').addEventListener('input',e=>{
+  renderProducts(e.target.value);
+});
+
+// سلة التسوق
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function openCart(){document.getElementById('cartSidebar').style.right='0';renderCart();}
+function closeCart(){document.getElementById('cartSidebar').style.right='-350px';}
+
+function addToCart(name,price){
+  cart.push({name,price});
+  localStorage.setItem('cart',JSON.stringify(cart));
+  renderCart();
+}
+
+function renderCart(){
+  const cartItems = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+  cartItems.innerHTML='';
+  let total=0;
+  cart.forEach((item,index)=>{
+    total+=item.price;
+    const div = document.createElement('div');
+    div.classList.add('cart-item');
+    div.innerHTML=`<span>${item.name} - ${item.price} د.ت</span>
+      <button onclick="removeItem(${index})">حذف</button>`;
+    cartItems.appendChild(div);
+  });
+  cartTotal.innerText='الإجمالي: '+total+' د.ت';
+}
+
+function removeItem(index){
+  cart.splice(index,1);
+  localStorage.setItem('cart',JSON.stringify(cart));
+  renderCart();
+}
+
+function checkout(){
+  if(cart.length===0){alert('السلة فارغة');return;}
+  alert('تم الطلب بنجاح 🚀');
+  cart=[];
+  localStorage.setItem('cart',JSON.stringify(cart));
+  renderCart();
+}
+
+renderCart();
 </script>
 
 </body>

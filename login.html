@@ -3,34 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تسجيل الدخول</title>
+<title>FORYOU | تسجيل الدخول</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-body{font-family:Cairo;background:#0f172a;color:white;text-align:center;padding:50px;}
-input{
-padding:10px;
-margin:10px;
-border-radius:8px;
-border:none;
-}
-button{
-padding:10px 20px;
-border:none;
-border-radius:8px;
-background:#38bdf8;
-cursor:pointer;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+body{background:#0f172a;color:white;display:flex;justify-content:center;align-items:center;height:100vh;}
+.login-container{background:#1e293b;padding:40px;border-radius:15px;width:350px;text-align:center;}
+.login-container h2{margin-bottom:30px;color:#38bdf8;}
+.login-container input{width:100%;padding:12px;margin-bottom:20px;border:none;border-radius:10px;outline:none;}
+.login-container button{background:#38bdf8;color:black;border:none;padding:12px 20px;border-radius:10px;font-weight:bold;cursor:pointer;}
+.login-container button:hover{transform:scale(1.05);}
 </style>
 </head>
 <body>
 
-<h1>تسجيل الدخول 🔐</h1>
+<div class="login-container">
+<h2>👤 تسجيل الدخول</h2>
+<input type="text" id="username" placeholder="اسم المستخدم">
+<input type="password" id="password" placeholder="كلمة المرور">
+<button onclick="login()">دخول</button>
+</div>
 
-<input type="email" placeholder="البريد الإلكتروني"><br>
-<input type="password" placeholder="كلمة المرور"><br>
-<button>دخول</button>
-
-<br><br>
-<a href="index.html">⬅ الرجوع</a>
+<script>
+function login(){
+  const user=document.getElementById('username').value;
+  const pass=document.getElementById('password').value;
+  if(user && pass){
+    alert('تم تسجيل الدخول بنجاح 🚀');
+    window.location.href='index.html';
+  }else{
+    alert('الرجاء إدخال اسم المستخدم وكلمة المرور');
+  }
+}
+</script>
 
 </body>
 </html>

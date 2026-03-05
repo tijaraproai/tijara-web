@@ -127,6 +127,29 @@ renderCart();
 
 async function stripeCheckout(){
 
+  function bankPayment(){
+
+if(cart.length === 0){
+alert("السلة فارغة");
+return;
+}
+
+let message = "لإتمام الطلب قم بالتحويل إلى الحساب البنكي التالي:\n\n";
+
+message += "البنك: BIAT\n";
+message += "الاسم: Mohamed Achir\n";
+message += "IBAN: TNXX XXXX XXXX XXXX XXXX\n\n";
+
+message += "بعد التحويل أرسل رقم العملية لتأكيد الطلب.";
+
+alert(message);
+
+cart = [];
+
+saveCart();
+
+renderCart();
+  }
 let response = await fetch("/api/create-checkout-session",{
 method:"POST",
 headers:{

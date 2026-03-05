@@ -47,7 +47,7 @@ footer{margin-top:80px;padding:40px;text-align:center;background:#020617;color:#
 <footer><p>© 2026 FORYOU PLATFORM</p></footer>
 
 <script src="https://js.stripe.com/v3/"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=TND"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=TND"></script> <!-- sb = Sandbox -->
 
 <script>
 // بيانات السلة من LocalStorage
@@ -81,7 +81,7 @@ function removeItem(index){
 }
 
 // الدفع عبر Stripe
-const stripe = Stripe('pk_test_XXXXXXXXXXXXXXXX'); // ضع مفتاحك العام
+const stripe = Stripe('pk_test_XXXXXXXXXXXXXXXX'); // ضع هنا مفتاحك العام
 document.getElementById('checkoutBtn').addEventListener('click', async ()=>{
   if(cart.length===0){alert('السلة فارغة'); return;}
   const response = await fetch('/api/create-checkout-session',{
@@ -94,7 +94,7 @@ document.getElementById('checkoutBtn').addEventListener('click', async ()=>{
   if(result.error){alert(result.error.message);}
 });
 
-// الدفع عبر PayPal
+// الدفع عبر PayPal (Sandbox)
 paypal.Buttons({
   createOrder: function(data, actions){
     let total = cart.reduce((a,b)=>a+b.price,0);

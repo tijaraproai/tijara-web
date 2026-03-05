@@ -17,6 +17,7 @@ nav a:hover{color:#38bdf8;}
 .cart-container{padding:80px 5%;}
 .cart-item{display:flex;justify-content:space-between;background:#1e293b;padding:15px;margin-bottom:15px;border-radius:10px;}
 button{background:#38bdf8;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:bold;}
+#paypal-button-container{margin-top:20px;}
 footer{margin-top:80px;padding:40px;text-align:center;background:#020617;color:#94a3b8;}
 </style>
 </head>
@@ -38,15 +39,24 @@ footer{margin-top:80px;padding:40px;text-align:center;background:#020617;color:#
 <h2>🛒 سلة التسوق</h2>
 <div id="cartItems"></div>
 <h3 id="cartTotal">الإجمالي: 0 د.ت</h3>
-<button onclick="checkout()">إتمام الشراء</button>
+<button id="checkoutBtn">الدفع عبر Stripe 💳</button>
+<div id="paypal-button-container"></div>
 </section>
 
 <!-- FOOTER -->
 <footer><p>© 2026 FORYOU PLATFORM</p></footer>
 
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=TND"></script>
+
 <script>
+// بيانات السلة من LocalStorage
 let cart = JSON.parse(localStorage.getItem("cart"))||[];
+
+// تحديث عداد السلة
 function updateCartCount(){document.getElementById('cartCount').innerText=cart.length;}
+
+// عرض السلة
 function renderCart(){
   const cartItems=document.getElementById('cartItems');
   const cartTotal=document.getElementById('cartTotal');
@@ -56,22 +66,50 @@ function renderCart(){
     total+=item.price;
     const div=document.createElement('div');
     div.classList.add('cart-item');
-    div.innerHTML=`<span>${item.name} - ${item.price} د.ت</span><button onclick="removeItem(${index})">حذف</button>`;
+    div.innerHTML=`<span>${item.name} - ${item.price} د.ت</span>
+                     <button onclick="removeItem(${index})">حذف</button>`;
     cartItems.appendChild(div);
   });
   cartTotal.innerText='الإجمالي: '+total+' د.ت';
 }
+
+// إزالة عنصر
 function removeItem(index){
   cart.splice(index,1);
   localStorage.setItem('cart',JSON.stringify(cart));
   renderCart();updateCartCount();
 }
-function checkout(){
-  if(cart.length===0){alert('السلة فارغة');return;}
-  alert('تم الطلب بنجاح 🚀');
-  cart=[];localStorage.setItem('cart',JSON.stringify(cart));
-  renderCart();updateCartCount();
-}
+
+// الدفع عبر Stripe
+const stripe = Stripe('pk_test_XXXXXXXXXXXXXXXX'); // ضع مفتاحك العام
+document.getElementById('checkoutBtn').addEventListener('click', async ()=>{
+  if(cart.length===0){alert('السلة فارغة'); return;}
+  const response = await fetch('/api/create-checkout-session',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({cart})
+  });
+  const session = await response.json();
+  const result = await stripe.redirectToCheckout({sessionId:session.id});
+  if(result.error){alert(result.error.message);}
+});
+
+// الدفع عبر PayPal
+paypal.Buttons({
+  createOrder: function(data, actions){
+    let total = cart.reduce((a,b)=>a+b.price,0);
+    return actions.order.create({purchase_units:[{amount:{value: total}}]});
+  },
+  onApprove: function(data, actions){
+    return actions.order.capture().then(function(details){
+      alert('تم الدفع بنجاح بواسطة PayPal. شكراً لك، '+details.payer.name.given_name);
+      cart=[];localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();updateCartCount();
+    });
+  }
+}).render('#paypal-button-container');
+
+// رندر أولي
 renderCart();updateCartCount();
 </script>
 

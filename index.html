@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORYOU | منصة التجارة الذكية</title>
 
-<title>Tijara Platform</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -31,205 +29,246 @@ justify-content:space-between;
 align-items:center;
 padding:20px 8%;
 background:#020617;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
 .logo{
-font-size:22px;
-font-weight:800;
+font-size:28px;
+font-weight:900;
 color:#38bdf8;
 }
 
-.nav-links a{
-margin:0 10px;
-text-decoration:none;
-color:white;
-font-weight:600;
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
 }
 
-.lang button{
-margin-left:5px;
-padding:5px 10px;
-border:none;
-cursor:pointer;
-background:#38bdf8;
-color:black;
-border-radius:5px;
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
 }
 
 /* HERO */
 
 .hero{
-height:80vh;
+height:90vh;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:20px;
+padding:40px;
+background:
+linear-gradient(180deg,#020617,#0f172a);
 }
 
 .hero h1{
-font-size:42px;
+font-size:60px;
 margin-bottom:20px;
 }
 
 .hero p{
-color:#cbd5f5;
-margin-bottom:30px;
+font-size:20px;
+color:#94a3b8;
+margin-bottom:40px;
 }
 
 .btn{
 background:#38bdf8;
-color:black;
-padding:12px 30px;
+padding:15px 40px;
 border-radius:30px;
 text-decoration:none;
-font-weight:700;
+color:black;
+font-weight:bold;
 }
 
 /* FEATURES */
 
 .features{
+padding:80px 8%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-padding:60px 8%;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
 }
 
-.card{
+.feature{
 background:#1e293b;
 padding:30px;
 border-radius:15px;
 text-align:center;
 }
 
-.card h3{
+.feature h3{
 margin-bottom:10px;
 color:#38bdf8;
 }
 
-footer{
+/* PRODUCTS */
+
+.products{
+padding:80px 8%;
 text-align:center;
-padding:30px;
+}
+
+.products h2{
+margin-bottom:40px;
+font-size:40px;
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.product{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+}
+
+.product img{
+width:100%;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+.product button{
+background:#38bdf8;
+border:none;
+padding:10px 20px;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:80px;
+padding:40px;
+text-align:center;
 background:#020617;
-margin-top:40px;
+color:#94a3b8;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <nav>
 
-<div class="logo">TIJARA</div>
+<div class="logo">FORYOU</div>
 
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="products.html">Products</a>
-<a href="cart.html">Cart</a>
-<a href="login.html">Login</a>
-</div>
-
-<div class="lang">
-<button onclick="setLang('ar')">AR</button>
-<button onclick="setLang('en')">EN</button>
-<button onclick="setLang('fr')">FR</button>
-</div>
+<ul>
+<li><a href="index.html">الرئيسية</a></li>
+<li><a href="products.html">المنتجات</a></li>
+<li><a href="cart.html">السلة</a></li>
+<li><a href="login.html">الدخول</a></li>
+</ul>
 
 </nav>
 
 <section class="hero">
 
-<h1 id="title">منصة تجارة عصرية</h1>
+<div>
 
-<p id="desc">
-منصة تجارة إلكترونية حديثة وسريعة
+<h1>منصة التجارة الذكية</h1>
+
+<p>
+بيع وشراء المنتجات بسهولة وأمان في منصة واحدة
 </p>
 
-<a href="products.html" class="btn" id="btn">
+<a class="btn" href="products.html">
 تصفح المنتجات
 </a>
+
+</div>
 
 </section>
 
 <section class="features">
 
-<div class="card">
-<h3 id="f1">سرعة</h3>
-<p id="f1d">موقع سريع وخفيف</p>
+<div class="feature">
+<h3>⚡ سرعة فائقة</h3>
+<p>موقع سريع يعمل على جميع الأجهزة</p>
 </div>
 
-<div class="card">
-<h3 id="f2">أمان</h3>
-<p id="f2d">حماية وموثوقية</p>
+<div class="feature">
+<h3>🔒 أمان عالي</h3>
+<p>حماية بيانات المستخدمين والمعاملات</p>
 </div>
 
-<div class="card">
-<h3 id="f3">سهولة</h3>
-<p id="f3d">تجربة استخدام بسيطة</p>
+<div class="feature">
+<h3>💳 دفع سهل</h3>
+<p>يدعم عدة طرق للدفع الإلكتروني</p>
+</div>
+
+</section>
+
+<section class="products">
+
+<h2>منتجات مميزة</h2>
+
+<div class="product-grid">
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd">
+
+<h3>سماعات بلوتوث</h3>
+
+<p>120 د.ت</p>
+
+<button onclick="addToCart('سماعات بلوتوث',120)">
+أضف للسلة
+</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12">
+
+<h3>ساعة ذكية</h3>
+
+<p>250 د.ت</p>
+
+<button onclick="addToCart('ساعة ذكية',250)">
+أضف للسلة
+</button>
+
+</div>
+
 </div>
 
 </section>
 
 <footer>
-TIJARA © 2026
+
+<p>
+© 2026 FORYOU PLATFORM
+</p>
+
 </footer>
 
 <script>
 
-const translations = {
+function addToCart(name,price){
 
-ar:{
-title:"منصة تجارة عصرية",
-desc:"منصة تجارة إلكترونية حديثة وسريعة",
-btn:"تصفح المنتجات",
-f1:"سرعة",
-f1d:"موقع سريع وخفيف",
-f2:"أمان",
-f2d:"حماية وموثوقية",
-f3:"سهولة",
-f3d:"تجربة استخدام بسيطة"
-},
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-en:{
-title:"Modern Commerce Platform",
-desc:"Fast and modern e-commerce experience",
-btn:"Browse Products",
-f1:"Speed",
-f1d:"Fast and optimized platform",
-f2:"Security",
-f2d:"Secure and reliable",
-f3:"Simplicity",
-f3d:"Easy user experience"
-},
+cart.push({
+name:name,
+price:price
+});
 
-fr:{
-title:"Plateforme de Commerce Moderne",
-desc:"Expérience e-commerce rapide",
-btn:"Voir les produits",
-f1:"Vitesse",
-f1d:"Site rapide et léger",
-f2:"Sécurité",
-f2d:"Protection et fiabilité",
-f3:"Simplicité",
-f3d:"Utilisation facile"
-}
+localStorage.setItem("cart",JSON.stringify(cart));
 
-}
-
-function setLang(lang){
-
-document.getElementById("title").innerText = translations[lang].title
-document.getElementById("desc").innerText = translations[lang].desc
-document.getElementById("btn").innerText = translations[lang].btn
-document.getElementById("f1").innerText = translations[lang].f1
-document.getElementById("f1d").innerText = translations[lang].f1d
-document.getElementById("f2").innerText = translations[lang].f2
-document.getElementById("f2d").innerText = translations[lang].f2d
-document.getElementById("f3").innerText = translations[lang].f3
-document.getElementById("f3d").innerText = translations[lang].f3d
+alert("تمت إضافة المنتج للسلة");
 
 }
 

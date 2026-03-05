@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FORYOU | سلة التسوق</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=TND"></script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
 body{background:#0f172a;color:white;}
@@ -16,14 +20,11 @@ nav a:hover{color:#38bdf8;}
 #cartCount{background:#ef4444;color:white;padding:2px 6px;border-radius:50%;font-size:14px;vertical-align:top;margin-left:4px;}
 .cart-container{padding:80px 5%;}
 .cart-item{display:flex;justify-content:space-between;background:#1e293b;padding:15px;margin-bottom:15px;border-radius:10px;}
-button{background:#38bdf8;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:bold;}
-#paypal-button-container{margin-top:20px;}
-footer{margin-top:80px;padding:40px;text-align:center;background:#020617;color:#94a3b8;}
+button{background:#38bdf8;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:bold;margin-top:10px;}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <div class="logo"><img src="images/logo.png" alt="FORYOU"></div>
   <ul>
@@ -34,84 +35,19 @@ footer{margin-top:80px;padding:40px;text-align:center;background:#020617;color:#
   </ul>
 </nav>
 
-<!-- CART CONTENT -->
 <section class="cart-container">
 <h2>🛒 سلة التسوق</h2>
 <div id="cartItems"></div>
 <h3 id="cartTotal">الإجمالي: 0 د.ت</h3>
+
+<!-- Stripe Checkout -->
 <button id="checkoutBtn">الدفع عبر Stripe 💳</button>
+
+<!-- PayPal Checkout -->
 <div id="paypal-button-container"></div>
+
 </section>
 
-<!-- FOOTER -->
-<footer><p>© 2026 FORYOU PLATFORM</p></footer>
-
-<script src="https://js.stripe.com/v3/"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=TND"></script> <!-- sb = Sandbox -->
-
-<script>
-// بيانات السلة من LocalStorage
-let cart = JSON.parse(localStorage.getItem("cart"))||[];
-
-// تحديث عداد السلة
-function updateCartCount(){document.getElementById('cartCount').innerText=cart.length;}
-
-// عرض السلة
-function renderCart(){
-  const cartItems=document.getElementById('cartItems');
-  const cartTotal=document.getElementById('cartTotal');
-  cartItems.innerHTML='';
-  let total=0;
-  cart.forEach((item,index)=>{
-    total+=item.price;
-    const div=document.createElement('div');
-    div.classList.add('cart-item');
-    div.innerHTML=`<span>${item.name} - ${item.price} د.ت</span>
-                     <button onclick="removeItem(${index})">حذف</button>`;
-    cartItems.appendChild(div);
-  });
-  cartTotal.innerText='الإجمالي: '+total+' د.ت';
-}
-
-// إزالة عنصر
-function removeItem(index){
-  cart.splice(index,1);
-  localStorage.setItem('cart',JSON.stringify(cart));
-  renderCart();updateCartCount();
-}
-
-// الدفع عبر Stripe
-const stripe = Stripe('pk_test_XXXXXXXXXXXXXXXX'); // ضع هنا مفتاحك العام
-document.getElementById('checkoutBtn').addEventListener('click', async ()=>{
-  if(cart.length===0){alert('السلة فارغة'); return;}
-  const response = await fetch('/api/create-checkout-session',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({cart})
-  });
-  const session = await response.json();
-  const result = await stripe.redirectToCheckout({sessionId:session.id});
-  if(result.error){alert(result.error.message);}
-});
-
-// الدفع عبر PayPal (Sandbox)
-paypal.Buttons({
-  createOrder: function(data, actions){
-    let total = cart.reduce((a,b)=>a+b.price,0);
-    return actions.order.create({purchase_units:[{amount:{value: total}}]});
-  },
-  onApprove: function(data, actions){
-    return actions.order.capture().then(function(details){
-      alert('تم الدفع بنجاح بواسطة PayPal. شكراً لك، '+details.payer.name.given_name);
-      cart=[];localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();updateCartCount();
-    });
-  }
-}).render('#paypal-button-container');
-
-// رندر أولي
-renderCart();updateCartCount();
-</script>
-
+<script src="js/cart.js"></script>
 </body>
 </html>

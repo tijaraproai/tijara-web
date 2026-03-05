@@ -1,15 +1,14 @@
 import Stripe from 'stripe';
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY); // مفتاح Stripe السري
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY); // المفتاح السري من Environment Variable
 
 export default async function handler(req, res){
   if(req.method==='POST'){
     const {cart} = req.body;
-
     const line_items = cart.map(item => ({
       price_data: {
-        currency: 'tnd', // عملة تونسية
+        currency: 'tnd',
         product_data: {name: item.name},
-        unit_amount: item.price * 100 // Stripe يقيس السعر بالسنتيم
+        unit_amount: item.price * 100
       },
       quantity: 1
     }));

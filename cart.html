@@ -3,51 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORYOU | سلة التسوق</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
-<!-- PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=TND"></script>
+<title>سلة التسوق | FORYOU</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
-body{background:#0f172a;color:white;}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 5%;background:rgba(0,0,0,0.7);position:sticky;top:0;z-index:1000;border-bottom:1px solid #333;}
-.logo img{height:60px;width:auto;}
-nav ul{display:flex;gap:25px;list-style:none;align-items:center;}
-nav a{color:white;text-decoration:none;font-weight:bold;font-size:18px;transition:.3s;}
-nav a:hover{color:#38bdf8;}
-#cartCount{background:#ef4444;color:white;padding:2px 6px;border-radius:50%;font-size:14px;vertical-align:top;margin-left:4px;}
-.cart-container{padding:80px 5%;}
-.cart-item{display:flex;justify-content:space-between;background:#1e293b;padding:15px;margin-bottom:15px;border-radius:10px;}
-button{background:#38bdf8;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:bold;margin-top:10px;}
+
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.cart-item{
+background:#1e293b;
+padding:20px;
+margin:15px auto;
+width:300px;
+border-radius:10px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.checkout{
+background:#22c55e;
+color:white;
+}
+
+.remove{
+background:#ef4444;
+color:white;
+}
+
+#paypal-button-container{
+margin-top:20px;
+}
+
 </style>
+
+<!-- PAYPAL -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=TND"></script>
+
 </head>
+
 <body>
 
-<nav>
-  <div class="logo"><img src="images/logo.png" alt="FORYOU"></div>
-  <ul>
-    <li><a href="index.html">🏠</a></li>
-    <li><a href="products.html">🛍</a></li>
-    <li><a href="#">🛒 <span id="cartCount">0</span></a></li>
-    <li><a href="login.html">👤</a></li>
-  </ul>
-</nav>
+<h1>🛒 سلة التسوق</h1>
 
-<section class="cart-container">
-<h2>🛒 سلة التسوق</h2>
-<div id="cartItems"></div>
-<h3 id="cartTotal">الإجمالي: 0 د.ت</h3>
+<div id="cart-container"></div>
 
-<!-- Stripe Checkout -->
-<button id="checkoutBtn">الدفع عبر Stripe 💳</button>
+<h2 id="total">المجموع: 0 د.ت</h2>
 
-<!-- PayPal Checkout -->
+<button class="checkout" onclick="stripeCheckout()">الدفع عبر Stripe 💳</button>
+
 <div id="paypal-button-container"></div>
 
-</section>
+<br><br>
 
-<script src="js/cart.js"></script>
+<a href="products.html" style="color:#38bdf8;">⬅ العودة للمنتجات</a>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveCart(){
+localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function renderCart(){
+
+const container = document.getElementById("cart-container");
+const totalEl = document.getElementById("total");
+
+container.innerHTML="";
+let total=0;
+
+cart.forEach((item,index)=>{
+
+total+=item.price;
+
+container.innerHTML+=`
+
+<div class="cart-item">
+
+<h3>${item.name}</h3>
+
+<p>${item.price} د.ت</p>
+
+<button class="remove" onclick="removeItem(${index})">حذف</button>
+
+</div>
+
+`;
+
+});
+
+totalEl.innerText="المجموع: "+total+" د.ت";
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+saveCart();
+
+renderCart();
+
+}
+
+renderCart();
+
+
+
+/* STRIPE */
+
+async function stripeCheckout(){
+
+let response = await fetch("/api/create-checkout-session",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({cart})
+});
+
+let data = await response.json();
+
+window.location = data.url;
+
+}
+
+
+
+/* PAYPAL */
+
+paypal.Buttons({
+
+createOrder:function(data,actions){
+
+let total=0;
+
+cart.forEach(item=>{
+
+total+=item.price;
+
+});
+
+return actions.order.create({
+
+purchase_units:[{
+
+amount:{
+
+value:total
+
+}
+
+}]
+
+});
+
+},
+
+onApprove:function(data,actions){
+
+return actions.order.capture().then(function(details){
+
+alert("تم الدفع بنجاح ✅");
+
+cart=[];
+
+saveCart();
+
+renderCart();
+
+});
+
+}
+
+}).render('#paypal-button-container');
+
+</script>
+
 </body>
 </html>

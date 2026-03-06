@@ -1,219 +1,205 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORYOU | منصة التجارة الذكية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
-body{background:#0f172a;color:white;overflow-x:hidden;}
-/* NAVBAR */
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 5%;background:rgba(0,0,0,0.7);position:sticky;top:0;z-index:1000;border-bottom:1px solid #333;}
-.logo img{height:60px;width:auto;}
-nav ul{display:flex;gap:25px;list-style:none;align-items:center;}
-nav a{color:white;text-decoration:none;font-weight:bold;font-size:18px;transition:.3s;}
-nav a:hover{color:#38bdf8;}
-#cartCount{background:#ef4444;color:white;padding:2px 6px;border-radius:50%;font-size:14px;vertical-align:top;margin-left:4px;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ForYou Shop</title>
 
-/* HERO */
-.hero{height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px;
-background:url('https://images.unsplash.com/photo-1602524817803-3c528b05c5f7?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;position:relative;}
-.hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.6);}
-.hero-content{position:relative;z-index:2;color:white;}
-.hero h1{font-size:55px;margin-bottom:20px;}
-.hero p{font-size:20px;color:#ccc;margin-bottom:40px;}
-.btn{background:#38bdf8;padding:15px 40px;border-radius:30px;text-decoration:none;color:black;font-weight:bold;}
+  <!-- خط Cairo -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
-/* FEATURES */
-.features{padding:80px 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.feature{background:#1e293b;padding:30px;border-radius:15px;text-align:center;}
-.feature h3{margin-bottom:10px;color:#38bdf8;}
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-/* SEARCH BAR */
-#searchBar{margin:40px 5%;padding:12px;width:calc(100%-10%);border-radius:10px;border:none;font-size:16px;outline:none;}
+    /* FEED الفيديوهات */
+    #feed-container {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .video-item {
+      height: 100vh;
+      width: 100%;
+      position: relative;
+    }
+    .video-item video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    .video-overlay {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .buy-button {
+      background-color: #ff0044;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      color: white;
+      font-weight: bold;
+    }
 
-/* PRODUCTS */
-.products{padding:80px 5%;text-align:center;}
-.products h2{font-size:40px;margin-bottom:40px;}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.product{background:#1e293b;padding:20px;border-radius:15px;transition:.3s;}
-.product:hover{transform:translateY(-5px);}
-.product img{width:100%;border-radius:10px;margin-bottom:15px;}
-.product button{background:#38bdf8;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:bold;}
-.star-rating{color:#facc15;margin-bottom:10px;}
+    /* SEARCH */
+    #searchBar {
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      display: block;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
 
-/* SIDEBAR CART */
-#cartSidebar{position:fixed;top:0;right:-350px;width:350px;height:100%;background:#1e293b;padding:20px;box-shadow:-2px 0 10px rgba(0,0,0,0.5);transition:.3s;overflow-y:auto;z-index:1001;}
-#cartSidebar h2{margin-bottom:20px;}
-#cartItems .cart-item{display:flex;justify-content:space-between;margin-bottom:15px;padding:10px;background:#111827;border-radius:10px;}
-#cartSidebar button.closeCart{background:#ef4444;color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;}
+    /* PRODUCTS GRID */
+    .products {
+      padding: 20px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .product h3, .product p {
+      margin: 5px 0;
+    }
+    .product button {
+      background-color: #ff0044;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-/* FOOTER */
-footer{margin-top:80px;padding:40px;text-align:center;background:#020617;color:#94a3b8;}
-</style>
+    /* SIDEBAR CART */
+    #cartSidebar {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 350px;
+      height: 100%;
+      background-color: #f5f5f5;
+      padding: 20px;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+      transition: right 0.3s ease;
+      z-index: 9999;
+    }
+    .closeCart {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff0044;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #222;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav>
-  <div class="logo"><img src="images/logo.png" alt="FORYOU"></div>
-  <ul>
-    <li><a href="index.html">🏠</a></li>
-    <li><a href="products.html">🛍</a></li>
-    <li><a href="#" onclick="openCart()">🛒 <span id="cartCount">0</span></a></li>
-    <li><a href="login.html">👤</a></li>
-  </ul>
-</nav>
+  <!-- FEED الفيديوهات -->
+  <div id="feed-container"></div>
 
-<!-- HERO -->
-<section class="hero">
-<div class="hero-content">
-<h1>منصة FORYOU للتجارة الذكية</h1>
-<p>بيع وشراء المنتجات بسهولة وأمان في منصة واحدة</p>
-<a class="btn" href="#products">تصفح المنتجات</a>
-</div>
-</section>
+  <!-- SEARCH -->
+  <input type="text" id="searchBar" placeholder="ابحث عن المنتجات...">
 
-<!-- FEATURES -->
-<section class="features">
-<div class="feature"><h3>⚡ سرعة فائقة</h3><p>موقع سريع يعمل على جميع الأجهزة</p></div>
-<div class="feature"><h3>🔒 أمان عالي</h3><p>حماية بيانات المستخدمين والمعاملات</p></div>
-<div class="feature"><h3>💳 دفع سهل</h3><p>يدعم عدة طرق للدفع الإلكتروني</p></div>
-</section>
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <h2>منتجات مميزة</h2>
+    <div class="product-grid" id="productGrid"></div>
+  </section>
 
-  <!-- بداية Feed -->
-<div id="feed-container">
-  <!-- كل فيديو سيضاف هنا ديناميكياً -->
-</div>
-<!-- نهاية Feed -->
+  <!-- SIDEBAR CART -->
+  <div id="cartSidebar">
+    <button class="closeCart" onclick="closeCart()">✖ إغلاق</button>
+    <h2>سلة التسوق</h2>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal">الإجمالي: 0 د.ت</h3>
+    <button onclick="checkout()" class="btn">إتمام الشراء</button>
+  </div>
 
-<style>
-  #feed-container {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  .video-item {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-  }
-  .video-item video {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-  .video-overlay {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .buy-button {
-    background-color: #ff0044;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-</style>
-<!-- SEARCH -->
-<input type="text" id="searchBar" placeholder="ابحث عن المنتجات...">
+  <!-- FOOTER -->
+  <footer><p>© 2026 FORYOU SHOP</p></footer>
 
-<!-- PRODUCTS -->
-<section class="products" id="products">
-<h2>منتجات مميزة</h2>
-<div class="product-grid" id="productGrid"></div>
-</section>
+  <!-- سكربتات -->
+  <script src="js/cart.js"></script>
+  <script src="js/feed.js"></script>
 
-<!-- SIDEBAR CART -->
-<div id="cartSidebar">
-<button class="closeCart" onclick="closeCart()">✖ إغلاق</button>
-<h2>سلة التسوق</h2>
-<div id="cartItems"></div>
-<h3 id="cartTotal">الإجمالي: 0 د.ت</h3>
-<button onclick="checkout()" class="btn">إتمام الشراء</button>
-</div>
+  <!-- سكربت عرض المنتجات والبحث -->
+  <script>
+    const products = [
+      {name:'سماعات بلوتوث',price:120,img:'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd'},
+      {name:'ساعة ذكية',price:250,img:'https://images.unsplash.com/photo-1546868871-7041f2a55e12'},
+      {name:'كاميرا رقمية',price:500,img:'https://images.unsplash.com/photo-1519183071298-a2962e8b7f64'},
+      {name:'حقيبة ظهر',price:180,img:'https://images.unsplash.com/photo-1596464716121-6c27c5e4b622'},
+      {name:'هاتف ذكي',price:1200,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9'}
+    ];
 
-<!-- FOOTER -->
-<footer><p>© 2026 FORYOU PLATFORM</p></footer>
+    const productGrid = document.getElementById('productGrid');
 
-<script>
-// بيانات المنتجات وهمية
-const products = [
-{name:'سماعات بلوتوث',price:120,img:'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd'},
-{name:'ساعة ذكية',price:250,img:'https://images.unsplash.com/photo-1546868871-7041f2a55e12'},
-{name:'كاميرا رقمية',price:500,img:'https://images.unsplash.com/photo-1519183071298-a2962e8b7f64'},
-{name:'حقيبة ظهر',price:180,img:'https://images.unsplash.com/photo-1596464716121-6c27c5e4b622'},
-{name:'هاتف ذكي',price:1200,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9'}
-];
+    function renderProducts(filter=''){
+      productGrid.innerHTML='';
+      products.filter(p=>p.name.includes(filter)).forEach(p=>{
+        const div = document.createElement('div');
+        div.classList.add('product');
+        div.innerHTML=`
+          <img src="${p.img}">
+          <div class="star-rating">⭐⭐⭐⭐⭐</div>
+          <h3>${p.name}</h3>
+          <p>${p.price} د.ت</p>
+          <button onclick="addToCart('${p.name}',${p.price})">أضف للسلة</button>
+        `;
+        productGrid.appendChild(div);
+      });
+    }
 
-const productGrid = document.getElementById('productGrid');
-function renderProducts(filter=''){
-  productGrid.innerHTML='';
-  products.filter(p=>p.name.includes(filter)).forEach(p=>{
-    const div = document.createElement('div');
-    div.classList.add('product');
-    div.innerHTML=`
-      <img src="${p.img}">
-      <div class="star-rating">⭐⭐⭐⭐⭐</div>
-      <h3>${p.name}</h3>
-      <p>${p.price} د.ت</p>
-      <button onclick="addToCart('${p.name}',${p.price})">أضف للسلة</button>
-    `;
-    productGrid.appendChild(div);
-  });
-}
-renderProducts();
-document.getElementById('searchBar').addEventListener('input',e=>{
-  renderProducts(e.target.value);
-});
+    renderProducts();
 
-// سلة التسوق
-let cart = JSON.parse(localStorage.getItem("cart"))||[];
-
-function updateCartCount(){document.getElementById('cartCount').innerText=cart.length;}
-function openCart(){document.getElementById('cartSidebar').style.right='0';renderCart();}
-function closeCart(){document.getElementById('cartSidebar').style.right='-350px';}
-
-function addToCart(name,price){
-  cart.push({name,price});
-  localStorage.setItem('cart',JSON.stringify(cart));
-  renderCart();updateCartCount();alert("تمت إضافة المنتج للسلة");
-}
-function renderCart(){
-  const cartItems = document.getElementById('cartItems');
-  const cartTotal = document.getElementById('cartTotal');
-  cartItems.innerHTML='';
-  let total=0;
-  cart.forEach((item,index)=>{
-    total+=item.price;
-    const div = document.createElement('div');
-    div.classList.add('cart-item');
-    div.innerHTML=`<span>${item.name} - ${item.price} د.ت</span><button onclick="removeItem(${index})">حذف</button>`;
-    cartItems.appendChild(div);
-  });
-  cartTotal.innerText='الإجمالي: '+total+' د.ت';
-}
-function removeItem(index){
-  cart.splice(index,1);
-  localStorage.setItem('cart',JSON.stringify(cart));
-  renderCart();updateCartCount();
-}
-function checkout(){
-  if(cart.length===0){alert('السلة فارغة');return;}
-  alert('تم الطلب بنجاح 🚀');
-  cart=[];localStorage.setItem('cart',JSON.stringify(cart));
-  renderCart();updateCartCount();
-}
-renderCart();updateCartCount();
-</script>
+    document.getElementById('searchBar').addEventListener('input',e=>{
+      renderProducts(e.target.value);
+    });
+  </script>
 
 </body>
 </html>

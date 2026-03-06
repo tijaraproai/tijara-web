@@ -12,7 +12,7 @@
 body{margin:0;padding:0;font-family:'Cairo',sans-serif;}
 #feed-container{width:100%;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
 .video-item{height:100vh;width:100%;position:relative;}
-.video-item video, .video-item img{object-fit:cover;width:100%;height:100%;}
+.video-item video{object-fit:cover;width:100%;height:100%;}
 .video-overlay{position:absolute;bottom:20px;right:20px;color:white;display:flex;flex-direction:column;align-items:center;}
 .buy-button{background-color:#ff0044;padding:10px 20px;margin-top:10px;border-radius:10px;cursor:pointer;color:white;border:none;font-weight:bold;}
 #searchBar{width:90%;max-width:600px;margin:20px auto;display:block;padding:10px;font-size:16px;border-radius:10px;border:1px solid #ccc;}
@@ -55,11 +55,11 @@ footer{text-align:center;padding:10px;background-color:#222;color:white;margin-t
 <footer><p>© 2026 FORYOU SHOP</p></footer>
 
 <!-- سكربتات -->
-<script src="js/cart.js"></script>
-<script src="js/feed.js"></script>
+<script src="js/cart.js"></script> <!-- يجب أن يكون أولًا -->
+<script src="js/feed.js"></script> <!-- بعده -->
 
 <script>
-// عرض المنتجات والبحث
+// المنتجات للعرض والبحث
 const products=[
 {name:'سماعات بلوتوث',price:120,img:'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd'},
 {name:'ساعة ذكية',price:250,img:'https://images.unsplash.com/photo-1546868871-7041f2a55e12'},
@@ -69,7 +69,6 @@ const products=[
 ];
 
 const productGrid=document.getElementById('productGrid');
-
 function renderProducts(filter=''){
 productGrid.innerHTML='';
 products.filter(p=>p.name.includes(filter)).forEach(p=>{

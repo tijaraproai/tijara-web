@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function(){
+
 const feedContainer = document.getElementById("feed-container");
 
 feedContainer.innerHTML = `
@@ -9,3 +11,5 @@ feedContainer.innerHTML = `
 </div>
 </div>
 `;
+
+});

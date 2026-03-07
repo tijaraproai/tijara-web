@@ -1,7 +1,11 @@
-const feedContainer = document.getElementById("feed-container");
+const feed = document.getElementById("feed-container");
 
-feedContainer.innerHTML = `
-<div style="height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:30px;">
-FEED WORKING
+feed.innerHTML = `
+<div class="video-item">
+<img src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd">
+<div class="video-overlay">
+<h2>منتج ترند</h2>
+<button class="buy-button">اشتر الآن</button>
+</div>
 </div>
 `;

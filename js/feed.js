@@ -1,27 +1,43 @@
-// feed.js
-console.log("feed.js loaded"); // للتأكد من التحميل
-
 const feedContainer = document.getElementById("feed-container");
 
-const videos=[
-{name:"سماعات", video:"https://www.w3schools.com/html/mov_bbb.mp4", price:120},
-{name:"ساعة", video:"https://www.w3schools.com/html/movie.mp4", price:250},
-{name:"كاميرا", video:"https://www.w3schools.com/html/mov_bbb.mp4", price:500}
+const videos = [
+{
+name:"سماعات بلوتوث",
+price:120,
+video:"https://www.w3schools.com/html/mov_bbb.mp4"
+},
+{
+name:"ساعة ذكية",
+price:250,
+video:"https://www.w3schools.com/html/movie.mp4"
+}
 ];
 
 function renderFeed(){
-feedContainer.innerHTML='';
+
 videos.forEach(v=>{
-const div=document.createElement("div");
-div.classList.add("video-item");
-div.innerHTML=`
-<video src="${v.video}" autoplay muted loop></video>
+
+const div = document.createElement("div");
+div.className = "video-item";
+
+div.innerHTML = `
+<video autoplay muted loop playsinline>
+<source src="${v.video}" type="video/mp4">
+</video>
+
 <div class="video-overlay">
 <h3>${v.name}</h3>
 <p>${v.price} د.ت</p>
-<button class="buy-button" onclick="addToCart('${v.name}',${v.price})">اشتري الآن</button>
-</div>`;
+<button class="buy-button" onclick="addToCart('${v.name}',${v.price})">
+اشتري الآن
+</button>
+</div>
+`;
+
 feedContainer.appendChild(div);
+
 });
+
 }
+
 renderFeed();
